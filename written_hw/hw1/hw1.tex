@@ -1,0 +1,436 @@
+% ---------
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage{fourier-orns}
+\usepackage{mathtools}
+\usepackage[normalem]{ulem} % either use this (simple) or
+\usepackage{tikz}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\color{BrickRed}#1}}
+\def\BlueSym#1{\textbf{\texttt{\color{RoyalBlue}#1}}}
+\allowdisplaybreaks
+
+\begin{document}
+
+\begin{center}
+\Large\textbf{CSCI 432/532, Spring 2026}%
+\\
+\LARGE\textbf{Homework 1}%
+\\[0.5ex]
+\large Due Monday, January 26 at 9am
+\end{center}
+
+\bigskip
+\hrule
+\bigskip
+
+\subsection*{Submission Requirements}
+\begin{itemize}
+    \item Type or clearly hand-write your solutions into a PDF format so that they are legible and professional. Submit your PDF on Gradescope. 
+    \item Do not submit your first draft. Type or clearly re-write your solutions for your final submission. If your submission is not legible, we will ask you to resubmit.
+    \item Use Gradescope to assign problems to the correct page(s) in your solution. If you do not do this correctly, we will ask you to resubmit.
+\end{itemize}
+
+\subsection*{Collaboration and Resources}
+
+You may access almost any resource in preparing your solution to the homework. The exception
+is that you may not seek answers to the problems on the homework directly, such as by
+pasting them into a GenAI tool, searching for solutions on a search engine, looking
+for them on Chegg or similar websites, or asking another person for the solution.
+ However, you \EMPH{must}
+\begin{itemize}
+    \item Write your solutions in your own words---this means that you should never be \emph{copying}
+    anything of substance from any source, and
+    \item credit every resource you use, including GenAI tools, by providing links or full chat transcripts.
+    If you use the provided LaTeX template, you can use the \texttt{Sources}
+    environment for this. Ask if you need help!
+\end{itemize}
+
+
+\begin{boxquote}{0.9}
+Remember, if you choose to use GenAI tools, not only must you provide a full
+transcript of your conversation (or a link to one), you must also use the
+following prompt (or some variation of it), and provide a full transcript of
+the conversation.
+\end{boxquote}  
+
+Prompt:
+\begin{boxquote}{0.9}
+You are acting as a teaching assistant for an advanced undergraduate/graduate
+algorithms and computer science theory course.
+
+Your role is not to provide full solutions or final answers.
+
+Instead, you should act like we are having a conversation. Ask me a single
+question and let me respond. Avoid asking me many questions at once or giving
+me a lot of information at one time. Guide me using hints, leading questions,
+partial insights, and sanity checks.  Help me debug my own proofs, algorithms,
+or reductions. Do not give a complete solution or full proofs. Be patient with
+me. Don't give me details so that I can move on to the next part of a problem.
+Make sure that I understood before moving on.
+
+The course uses Jeff Erickson's Models of Computation lecture notes, so you should
+guide me to answer problems using the definitions, notation, and style from those notes.
+
+Assume I am a serious student trying to learn, not to shortcut the assignment.
+I am attaching the assignment, so you should refuse to provide a complete solution
+to the problems listed. Of course, you can walk me through the "Solved
+Problems" listed at the end if I ask.
+\end{boxquote}  
+
+
+
+\newpage
+%----------------------------------------------------------------------
+
+\headers{CSCI 432/532}{Homework 1 (due January 26)}{Spring 2026}
+
+\begin{enumerate}
+%\parindent 1.5em \itemsep 4ex plus 0.5fil
+
+%----------------------------------------------------------------------
+
+\item
+Given a string $w$ and a symbol $a$, let \emph{delete}$(a, w)$ be the string $w$ with all instances of $a$ removed. For example, \emph{delete}(\Sym{z}, \Sym{jazzy}) is \Sym{jay} and \emph{delete}(\Sym{1},\Sym{00101110}) is \Sym{0000}.
+Rubrics for each part of the problems are given below.
+Note that there are sample solved problems beginning on the next page; \textbf{use these
+as a guide for how to write your solutions.}
+
+\begin{enumerate}[(a)]
+    \item (2 points) Write a recursive function that computes \emph{delete}$(a,w)$.
+    \begin{Rubric}{Definition rubric}
+        2 points = 
+\begin{itemize}
+    \item[+ 1]
+    For all correct base cases
+    \item[+ 1] For all correct recursive cases.
+\end{itemize}
+No credit for the rest of the problem unless this part is correct.
+\end{Rubric}
+    \item (4 points) For strings $x$ and $y$ and symbol $a$, prove that \emph{delete}$(a, x \Cdot y) = \emph{delete}(a, x) \Cdot \emph{delete}(a, y)$.
+\begin{Rubric}{Induction rubric}
+10 points = 
+\begin{itemize}
+    \item[+ 1] for explicitly considering an arbitrary object
+    \item[+ 2] for an explicit valid induction hypothesis
+    \begin{itemize}
+        \item Yes, you need to write it down. Yes, even if it’s ``obvious''.
+        Remember that the goal of the homework is to communicate with people who
+        aren't as clever as you.
+    \end{itemize}
+    \item[+ 2] for explicit exhaustive case analysis
+    \begin{itemize}
+        \item No credit here if the case analysis omits an infinite number of
+        objects. (For example: all oddlength palindromes.)
+        \item $-1$ if the case analysis omits a finite number of objects. (For
+        example: the empty string.)
+        \item $-1$ for making the reader infer the case conditions. Spell them out!
+        \item No penalty if the cases overlap (for example: even length at least
+        2, odd length at least 3, and
+        length at most 5.)
+    \end{itemize}
+    \item[+ 1] for proof of cases that do not invoke the inductive hypothesis (“base cases”)
+    \begin{itemize}
+        \item No credit here if one or more “base cases” are missing.
+    \end{itemize}
+    \item[+ 2] for correctly applying the stated inductive hypothesis
+    \begin{itemize}
+        \item No credit here for applying a different inductive hypothesis, even if that different inductive hypothesis would be valid.
+    \end{itemize}
+    \item[+ 2] for other details in cases that invoke the inductive hypothesis (“inductive cases”)
+    \begin{itemize}
+        \item No credit here if one or more “inductive cases” are missing 
+    \end{itemize}
+\end{itemize}
+
+\end{Rubric}
+    \item (4 points) Recall the function $\#(a, w)$ from problem session 1, which returns the number of occurrences of the symbol $a$ in string $w$. For string $w \in \{\Sym0,\Sym1\}^*$, prove that $\abs{\emph{delete}(\Sym1,w)} = \#(\Sym0, w)$.
+    \begin{Rubric}{Induction rubric}
+    Same as above.
+    \end{Rubric}
+
+\end{enumerate}
+
+\end{enumerate}
+\newpage
+%----------------------------------------------------------------------
+\subsection*{Solved Problems}
+
+\begin{enumerate}
+\setcounter{enumi}{0}
+%----------------------------------------------------------------------
+
+\item
+For any string $w \in \set{\Sym0,\Sym1}^*$, let $\emph{swap}(w)$ denote the string obtained from $w$ by swapping the first and second symbols, the third and fourth symbols, and so on.  For example:
+\[
+	\emph{swap}(\Sym{10\,11\,00\,01\,10\,1}) = \Sym{01\,11\,00\,10\,01\,1}.
+\]
+The \emph{swap} function can be formally defined as follows:
+\[
+	\emph{swap}(w) := \begin{cases}
+		\e & \text{if $w=\e$}\\
+		w & \text{if $w = \Sym0$ or $w = \Sym1$}\\
+		ba\Cdot\emph{swap}(x) &
+			\text{if $w = abx$ for some
+					$a,b\in\set{\Sym0,\Sym1}$ and
+					$x\in \set{\Sym0,\Sym1}^*$} 
+	\end{cases}
+\]
+
+\begin{enumerate}
+\item
+Prove that $\abs{\emph{swap}(w)} = \abs{w}$ for every string $w$.
+
+\begin{Solution}
+\parindent0pt
+Let $w$ be an arbitrary string.
+
+Assume $\abs{\emph{swap}(x)} = \abs{x}$ for every string $x$ that is shorter than $w$.
+
+There are three cases to consider (mirroring the definition of \emph{swap}):
+\begin{itemize}
+\item
+If $w = \e$, then
+\begin{align*}
+	\abs{\emph{swap}(w)}
+	&= \abs{\emph{swap}(\e)}	& \text{because $w = \e$} \\
+	&= \abs{\e} 				& \text{by definition of \emph{swap}} \\
+	&= \abs{w} 					& \text{because $w = \e$}
+\end{align*}
+\item
+If $w = \Sym0$ or $w = \Sym1$, then
+\begin{align*}
+	\abs{\emph{swap}(w)}
+	&= \abs{w} 					& \text{by definition of \emph{swap}}
+\end{align*}
+\item
+Finally, if $w = abx$ for some $a,b\in\set{\Sym0,\Sym1}$ and $x\in\set{\Sym0,\Sym1}^*$ , then
+\begin{align*}
+	\abs{\emph{swap}(w)}
+	&= \abs{\emph{swap}(abx)}			& \text{because $w = abx$} \\
+	&= \abs{ba\Cdot\emph{swap}(x)}		& \text{by definition of \emph{swap}} \\
+	&= \abs{ba} + \abs{\emph{swap}(x)}
+										& \text{because $\abs{y\Cdot z} = \abs{y}+\abs{z}$}\\
+	&= \abs{ba} + \abs{x}				& \text{by the induction hypothesis}\\
+	&= 2 + \abs{x}						& \text{by definition of $\abs{\,\cdot\,}$}\\
+	&= \abs{ab} + \abs{x}				& \text{by definition of $\abs{\,\cdot\,}$}\\
+	&= \abs{ab\Cdot x}					& \text{because $\abs{y\Cdot z} = \abs{y}+\abs{z}$}\\
+	&= \abs{abx} 						& \text{by definition of $\Cdot$}\\
+	&= \abs{w} 							& \text{because $w = abx$}
+\end{align*}
+\end{itemize}
+In all cases, we conclude that $\abs{\emph{swap}(w)} = \abs{w}$.
+\end{Solution}
+\unskip
+
+\begin{rubric}
+5 points: Standard induction rubric (scaled).  This is more detail than necessary for full credit.
+\end{rubric}
+
+\newpage
+\item
+Prove that $\emph{swap}(\emph{swap}(w)) = w$ for every string $w$.
+
+\begin{Solution}
+\parindent0pt
+Let $w$ be an arbitrary string.
+
+Assume $\emph{swap}(\emph{swap}(x)) = x$ for every string $x$ that is shorter than $w$.
+
+There are three cases to consider (mirroring the definition of \emph{swap}):
+\begin{itemize}
+\item
+If $w = \e$, then 
+\begin{align*}
+	\emph{swap}(\emph{swap}(w))
+	&= \emph{swap}(\emph{swap}(\e))		& \text{because $w=\e$} \\
+	&= \emph{swap}(\e)					& \text{by definition of \emph{swap}} \\
+	&= \e								& \text{by definition of \emph{swap}} \\
+	&= w								& \text{because $w=\e$}
+\end{align*}
+\item
+If $w = \Sym0$ or $w = \Sym 1$, then 
+\begin{align*}
+	\emph{swap}(\emph{swap}(w))
+	&= \emph{swap}(w)					& \text{by definition of \emph{swap}} \\
+	&= w								& \text{by definition of \emph{swap}}
+\end{align*}
+\item
+Finally, if $w = abx$ for some $a,b\in\set{\Sym0,\Sym1}$ and $x\in\set{\Sym0,\Sym1}^*$ , then
+\begin{align*}
+	\emph{swap}(\emph{swap}(w))
+	&= \emph{swap}(\emph{swap}(abx))	& \text{because $w = abx$} \\
+	&= \emph{swap}(ba\Cdot\emph{swap}(x))
+										& \text{by definition of \emph{swap}} \\
+	&= \emph{swap}(ba\Cdot z)
+										& \text{where $z = \emph{swap}(x)$} \\
+	&= \emph{swap}(baz)
+										& \text{by definition of $\Cdot$} \\
+	&= ab\Cdot \emph{swap}(z)
+										& \text{by definition of \emph{swap}} \\
+	&= ab\Cdot \emph{swap}(\emph{swap}(x))
+										& \text{because $z = \emph{swap}(x)$} \\
+	&= ab\Cdot x							& \text{by the induction hypothesis}\\
+	&= abx 								& \text{by definition of $\Cdot$} \\
+	&= w	 							& \text{because $w = abx$}
+\end{align*}
+\end{itemize}
+In all cases, we conclude that $\emph{swap}(\emph{swap}(w)) = w$.
+\end{Solution}
+\unskip
+
+\begin{rubric}
+5 points: Standard induction rubric (scaled).  This is more detail than necessary for full credit.
+\end{rubric}
+
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\newpage
+\item
+The \EMPH{reversal $w^R$} of a string $w$ is defined recursively as follows:
+\[	
+	w^R := \begin{cases}
+		\e & \text{if $w=\e$} \\[0.5ex]
+		x^R \Cdot a & \text{if $w=a\cdot x$}
+	\end{cases}
+\]
+A \EMPH{palindrome} is any string that is equal to its reversal, like \Sym{AMANAPLANACANALPANAMA}, \hbox{\Sym{RACECAR}}, \Sym{POOP}, \Sym{I}, and the empty string.
+
+\begin{enumerate}
+\item
+Give a recursive definition of a palindrome over the alphabet $\Sigma$.
+
+\begin{Solution}
+A string $w\in\Sigma^*$ is a palindrome if and only if either
+\begin{itemize}
+\item $w = \e$, or
+\item $w = a$ for some symbol $a\in\Sigma$, or
+\item $w = axa$ for some symbol $a\in\Sigma$ and some \emph{palindrome} $x\in\Sigma^*$.
+\end{itemize}
+\end{Solution}
+\unskip
+\begin{rubric}
+2 points = + 1 for base cases and + 1 for the recursive case.
+No credit for the rest of the problem unless this part is correct.
+\end{rubric}
+
+\item
+Prove $w = w^R$ for every palindrome $w$ (according to your recursive definition).  
+
+You may assume the following facts about all strings $x$, $y$, and~$z$:
+\begin{itemize}
+\item Reversal reversal: $(x^R)^R = x$
+\item Concatenation reversal: $(x\Cdot y)^R = y^R\Cdot x^R$
+\item Right cancellation:  If $x\Cdot z = y\Cdot z$, then $x = y$.
+\end{itemize}
+
+
+\begin{Solution}
+Let $w$ be an arbitrary palindrome.
+
+Assume that $x = x^R$ for every palindrome $x$ such that $\abs{x}<\abs{w}$.
+
+There are three cases to consider (mirroring the definition of “palindrome”):
+\begin{itemize}
+\item
+If $w = \e$, then $w^R = \e$ by definition, so $w = w^R$.
+
+\item
+If $w = a$ for some symbol $a\in\Sigma$, then $w^R = a$ by definition, so $w = w^R$.
+
+\item
+Finally, if $w = axa$ for some symbol $a\in\Sigma$ and some palindrome $x\in P$, then 
+\begin{align*}
+	w^R
+	&=	(a \cdot x \Cdot a)^R		& \text{because w = axa}\\
+	&=	(x\Cdot a)^R \Cdot a			& \text{by definition of reversal} \\
+	&=	a^R \Cdot x^R \Cdot a		& \text{by concatenation reversal}\\
+	&=	a \Cdot x^R \Cdot a			& \text{by definition of reversal} \\
+	&=	a \Cdot x \Cdot a			& \text{by the inductive hypothesis} \\
+	&=	w							& \text{because w = axa}
+\end{align*}
+\end{itemize}
+In all three cases, we conclude that $w = w^R$. \EOS
+\end{Solution}
+\unskip
+\begin{rubric}
+4 points: standard induction rubric (scaled)
+\end{rubric}
+
+
+\item
+Prove that every string $w$ such that $w = w^R$ is a palindrome (according to your recursive definition).
+
+Again, you may assume the following facts about all strings $x$, $y$, and~$z$:
+\begin{itemize}
+\item Reversal reversal: $(x^R)^R = x$
+\item Concatenation reversal: $(x\Cdot y)^R = y^R\Cdot x^R$
+\item Right cancellation:  If $x\Cdot z = y\Cdot z$, then $x = y$.
+\end{itemize}
+
+
+\begin{Solution}\parindent0pt
+Let $w$ be an arbitrary string such that $w = w^R$.
+
+Assume that every string $x$ such that $\abs{x} < \abs{w}$ and $x = x^R$ is a palindrome.
+
+There are three cases to consider (mirroring the definition of “palindrome”):
+\begin{itemize}\parskip0.25ex
+\item 
+If $w = \e$, then $w$ is a palindrome by definition.
+
+\item 
+If $w = a$ for some symbol $a\in\Sigma$, then $w$ is a palindrome by definition.
+
+\item
+Otherwise, we have $w = ax$ for some symbol $a$ and some \emph{non-empty} string~$x$.
+  
+The definition of reversal implies that $w^R = (ax)^R = x^R a$.
+
+Because $x$ is non-empty, its reversal $x^R$ is also non-empty.
+
+Thus, $x^R = by$ for some symbol $b$ and some string~$y$.
+
+It follows that $w^R = bya$, and therefore $w = (w^R)^R = (bya)^R = a y^R b$.
+
+\medskip
+\Comment{At this point, we need to prove that $a=b$ and that $y$ is a palindrome.}
+\medskip
+
+Our assumption that $w = w^R$ implies that $bya = a y^R b$.
+
+The recursive definition of string equality immediately implies $a=b$.
+
+\medskip
+Because $a=b$, we have $w = ay^Ra$ and $w^R = a y a$.
+
+The recursive definition of string equality implies $y^Ra = ya$.
+
+Right cancellation implies $y^R = y$.
+
+The inductive hypothesis now implies that $y$ is a palindrome.
+
+\medskip
+We conclude that $w$ is a palindrome by definition.
+\end{itemize}
+In all three cases, we conclude that $w$ is a palindrome.\needqedtrue\EOS
+\end{Solution}
+\unskip
+\begin{rubric}
+4 points: standard induction rubric (scaled).
+\end{rubric}
+
+\end{enumerate}
+
+\end{enumerate}
+ 
+%%%%%%%%%%%%%%%%%%%%
+\end{document}
+

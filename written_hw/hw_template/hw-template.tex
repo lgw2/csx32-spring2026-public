@@ -1,0 +1,112 @@
+% ---------
+%  Compile with "pdflatex hw0".
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage[utf8]{inputenc}		% Allow some non-ASCII Unicode in source
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\color{BrickRed}#1}}
+\def\BlueSym#1{\textbf{\texttt{\color{RoyalBlue}#1}}}
+
+% =========================================================
+\begin{document}
+
+% ---------------------------------------------------------
+
+
+\noindent Given a string $w$ and a symbol $a$, let \emph{delete}$(a, w)$ be the string $w$ with all instances of $a$ removed. For example, \emph{delete}(\Sym{z}, \Sym{jazzy}) is \Sym{jay} and \emph{delete}(\Sym{1},\Sym{00101110}) is \Sym{0000}.
+
+\begin{enumerate}[(a)]
+	\item 
+
+Give a recursive function to compute \emph{delete}.
+
+
+\begin{Solution}
+Let $a$ be a symbol and $w$ a string.
+(Hint: there are at least two cases based on the recursive definition of strings, but you may need more than two!)
+\[
+	\emph{delete}(a,w) := \begin{cases}
+		 & \text{if }\\[0.25ex]
+		 & \text{if }\\
+	\end{cases}
+\]
+\end{Solution}
+
+\begin{Sources}~ % note the tilde to add a line break
+\begin{itemize}
+    \item  Bob Smith helped me. He took this course at UM in Fall 2020. He suggested that I needed two separate recursive cases.
+    \item I looked at the slides at \url{https://chengjianglong.com/slides/DS_Lecture_22.pdf} for another perspective on recursive structures.
+	\item I used ChatGPT. Here is the full transcript of my conversation:\\
+	 \url{https://chatgpt.com/share/6970e55f-e594-800e-88e3-c5eaa8caf7ce}
+
+\end{itemize}
+\end{Sources}
+
+\newpage
+
+\item 
+Prove that $\emph{delete}(a, x \Cdot y) = \emph{delete}(a, x) \Cdot \emph{delete}(a,y)$ for all strings $x,y$ and all symbols $a$.
+
+\begin{Solution}
+\parindent0pt
+Let $x,y$ be arbitrary strings and $a$ an arbitrary symbol.
+
+Assume... (what's the inductive hypothesis?)
+
+There are ?? cases to consider:
+\begin{itemize}
+\item
+If $w = \e$, then
+\begin{align*}
+	\emph{delete}(a,x \Cdot y)
+	&= \emph{delete}(a,\e \Cdot y)	& \text{because ?} \\
+	&\\
+	&\\
+	&\\
+	&\\
+	&= \emph{delete}(a, \e) \Cdot \emph{delete}(a, y)	& \text{because ?} \\
+	&= \emph{delete}(a, x) \Cdot \emph{delete}(a, y)	& \text{because $x = \e$} \\
+\end{align*}
+\item
+...you fill in the rest of the cases
+\end{itemize}
+In all cases, we conclude that $\emph{delete}(a, x \Cdot y) = \emph{delete}(a, x) \Cdot \emph{delete}(a,y)$.
+\end{Solution}
+\unskip
+
+\begin{Sources}~ % note the tilde to add a line break
+\begin{itemize}
+	\item Same ChatGPT conversation as above. Here is the full transcript of my conversation:\\
+	 \url{https://chatgpt.com/share/6970e55f-e594-800e-88e3-c5eaa8caf7ce}
+
+\end{itemize}
+\end{Sources}
+
+\newpage
+\item Recall the function $\#(a, w)$ from problem session 1, which returns the number of occurrences of the symbol $a$ in string $w$. For any string $w \in \{0,1\}^*$, prove that $\abs{\emph{delete}(1,w)} = \#(0, w)$.
+
+\begin{Solution}
+\parindent0pt
+Let $w \in \{0,1\}^* $.
+
+\vspace{6in}
+
+In all cases, we conclude that  $\abs{\emph{delete}(1,w)} = \#(0, w)$.
+\end{Solution}
+
+\begin{Sources}
+None.
+\end{Sources}
+
+
+\end{enumerate}
+
+
+
+\end{document}
