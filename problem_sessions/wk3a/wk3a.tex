@@ -1,0 +1,95 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+
+\newtheorem{lemma}{Lemma}
+
+% Change fonts
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\color{BrickRed}#1}}
+
+
+% =========================================================
+\begin{document}
+
+\headers{CSCI 432/532}{Problem Session 3a}{Spring 2026}
+
+\noindent Recall from lecture that a \emph{regular expression} is compact notation for a language (that is, a set of strings).  Formally, a regular language is one of the following:
+
+\begin{itemize}
+\item The symbol $\boldsymbol{\varnothing}$ (representing the empty set)
+\item Any string (representing the set containing only that string)
+\item \EMPH{$R+S$} for some regular expressions $R$ and $S$ (representing alternation / union)
+\item \EMPH{$R\cdot S$} or \EMPH{$RS$} for some regular expressions $R$ and $S$ (representing concatenation)
+\item \EMPH{$R^*$} for some regular expression $R$ (representing Kleene closure / unbounded repetition)
+\end{itemize}
+In the absence of parentheses, Kleene closure has highest precedence, followed by concatenation.  For example, $\Sym1 + \Sym{01}^* = \set{\Sym0, \Sym1, \Sym{01}, \Sym{011}, \Sym{0111}, \dots}$, but $(\Sym1 + \Sym{01})^* = \set{\e, \Sym1, \Sym{01}, \Sym{11}, \Sym{011}, \Sym{101}, \Sym{111}, \Sym{0101}, \dots}$.
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+Give regular expressions for each of the following languages over the binary alphabet $\set{\Sym0,\Sym1}$.  (For extra practice, find multiple regular expressions for each language.)
+
+\begin{enumerate}
+\parindent 1.5em
+
+\item[0.]
+All strings.
+
+
+\item
+All strings containing the substring \Sym{000}.
+
+
+\item
+All strings \emph{not} containing the substring \Sym{000}.
+
+
+\item
+All strings in which every run of \Sym0s has length at least $3$.
+
+
+\item
+All strings in which every \Sym1 appears before every substring \Sym{000}.
+
+
+\item
+All strings containing at least three \Sym0s.
+
+\item
+Every string except \Sym{000}.  \Hint{Don’t try to be clever.}
+
+\end{enumerate}
+
+\noindent\textbf{More difficult problems to work on later:}
+
+\begin{enumerate}
+\setcounter{enumi}{6}
+
+\item
+All strings $w$ such that \emph{in every prefix of $w$}, the number of \Sym0s and \Sym1s differ by at most $1$.
+
+\Hard
+\item
+All strings containing at least two \Sym0s and at least one \Sym1.
+
+\Hard
+\item
+All strings $w$ such that \emph{in every prefix of $w$}, the number of \Sym0s and \Sym1s differ by at most $2$.
+
+\item
+All strings in which every run has odd length.  (For example, \Sym{0001} and \Sym{100000111} and the empty string $\e$ are in this language, but \Sym{000000} and \Sym{001000} are not.)
+
+\ReallyHard
+\item
+All strings in which the substring \Sym{000} appears an even number of times.
+(For example, \Sym{01100} and \Sym{000000} and the empty string $\e$ are in this language, but \Sym{00000} and \Sym{001000} are not.)
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,80 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+
+\hidesolutions
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\color{BrickRed}#1}}
+
+% =========================================================
+\begin{document}
+
+\headers{CSCI 432/532}{Problem Session 3a}{Spring 2026}
+
+\noindent
+Describe deterministic finite-state automata that accept each of the following languages over the alphabet $\Sigma = \set{\Sym0,\Sym1}$.  Give the states of your DFAs mnemonic names, and describe briefly \emph{in English} the meaning or purpose of each state.  
+
+Either drawings or formal descriptions are acceptable, as long as the states $Q$, the start state~$s$, the accept states $A$, and the transition function $\delta$ are all  clear.  Try not to use too many states, but \emph{don’t} try to use as few states as possible.  Clarity is more important than brevity.
+
+Yes, these are exactly the same languages that you saw last problem session.
+
+%----------------------------------------------------------------------
+\bigskip\hrule\bigskip
+\begin{enumerate}
+\parindent 1.5em 
+
+\item[0.]
+All strings.
+
+\item
+All strings containing the substring \Sym{000}.
+
+\item
+All strings \emph{not} containing the substring \Sym{000}.
+
+\item
+All strings in which every run of \Sym0s has length at least $3$.
+
+\item
+All strings in which every \Sym1 appears before every substring \Sym{000}.
+
+\item
+All strings containing at least three \Sym0s.
+
+\item
+Every string except \Sym{000}.  \Hint{Don’t try to be clever.}
+
+\end{enumerate}
+
+
+\bigskip\hrule\bigskip
+\noindent\textbf{More difficult problems to think about later:}
+
+\begin{enumerate}
+\setcounter{enumi}{6}
+
+\item
+All strings $w$ such that \emph{in every prefix of $w$}, the number of \Sym0s and \Sym1s differ by at most $1$.
+
+\item
+All strings containing at least two \Sym0s and at least one \Sym1.
+
+\item
+All strings $w$ such that \emph{in every prefix of $w$}, the number of \Sym0s and \Sym1s differ by at most $2$.
+
+\item
+All strings in which every run has odd length.  (For example, \Sym{0001} and \Sym{100000111} and the empty string $\e$ are in this language, but \Sym{000000} and \Sym{001000} are not.)
+
+\Hard
+\item
+All strings in which the substring \Sym{000} appears an even number of times.
+(For example, \Sym{01100} and \Sym{000000} and the empty string $\e$ are in this language, but \Sym{00000} and \Sym{001000} are not.)
+
+\end{enumerate}
+
+
+
+\end{document}
