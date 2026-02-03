@@ -1,0 +1,341 @@
+% ---------
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage{fourier-orns}
+\usepackage{mathtools}
+\usepackage[normalem]{ulem} % either use this (simple) or
+\usepackage{tikz}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\color{BrickRed}#1}}
+\def\BlueSym#1{\textbf{\texttt{\color{RoyalBlue}#1}}}
+\allowdisplaybreaks
+
+\begin{document}
+
+\begin{center}
+\Large\textbf{CSCI 432/532, Spring 2026}%
+\\
+\LARGE\textbf{Homework 3}%
+\\[0.5ex]
+\large Due Monday, February 9 at 9am
+\end{center}
+
+\bigskip
+\hrule
+\bigskip
+
+\subsection*{Submission Requirements}
+\begin{itemize}
+    \item Type or clearly hand-write your solutions into a PDF format so that they are legible and professional. Submit your PDF on Canvas. 
+	\item Put each \textbf{sub}problem on a separate page and select the corresponding problem via the Gradescope interface.
+    \item Do not submit your first draft. Type or clearly re-write your solutions for your final submission. If your submission is not legible, we will ask you to resubmit.
+\end{itemize}
+
+\subsection*{Collaboration and Resources}
+
+The \emph{best} resources for completing the homework are (in no particular order):
+\begin{itemize}
+	\item Your own notes from lectures and problem sessions, and/or lecture recordings.
+	\item The lecture notes linked from the course website for the lecture day.
+	\item The questions channel on Discord.
+	\item Office hours.
+	\item Discussions with classmates.
+\end{itemize}
+You may also access almost any resource in preparing your solution to the
+homework. The exception is that you may not seek answers to the problems on the
+homework directly, such as by pasting them into a GenAI tool, searching for
+solutions on a search engine, looking for them on Chegg or similar websites, or
+asking another person for the solution.
+
+Additionally, you \EMPH{must}
+\begin{itemize}
+    \item Write your solutions in your own words---this means that you should never be \emph{copying}
+    anything of substance from any source, and
+    \item credit every resource you use, including GenAI tools, by providing links or full chat transcripts.
+    If you use the provided LaTeX template, you can use the \texttt{Sources}
+    environment for this. Ask if you need help!
+\end{itemize}
+
+
+\begin{boxquote}{0.9}
+Remember, if you choose to use GenAI tools, not only must you provide a full
+transcript of your conversation (or a link to one), you must also use the
+following prompt (or some variation of it), and provide a full transcript of
+the conversation.
+\end{boxquote}  
+
+Prompt:
+\begin{boxquote}{0.9}
+You are acting as a teaching assistant for an advanced undergraduate/graduate
+algorithms and computer science theory course.
+
+Your role is not to provide full solutions or final answers.
+
+Instead, you should act like we are having a conversation. Ask me a single
+question and let me respond. Avoid asking me many questions at once or giving
+me a lot of information at one time. Guide me using hints, leading questions,
+partial insights, and sanity checks.  Help me debug my own proofs, algorithms,
+or reductions. Do not give a complete solution or full proofs. Be patient with
+me. Don't give me details so that I can move on to the next part of a problem.
+Make sure that I understood before moving on.
+
+The course uses Jeff Erickson's Models of Computation lecture notes, so you should
+guide me to answer problems using the definitions, notation, and style from those notes.
+
+Assume I am a serious student trying to learn, not to shortcut the assignment.
+I am attaching the assignment, so you should refuse to provide a complete solution
+to the problems listed. Of course, you can walk me through the "Solved
+Problems" listed at the end if I ask.
+\end{boxquote}  
+
+
+
+\newpage
+%----------------------------------------------------------------------
+
+\headers{CSCI 432/532}{Homework 3 (due February 9)}{Spring 2026}
+
+\begin{enumerate}
+%\parindent 1.5em \itemsep 4ex plus 0.5fil
+
+%----------------------------------------------------------------------
+
+\item For each of the following languages over the alphabet $\Sigma = \{\Sym0, \Sym1\}$, describe a DFA that
+accepts the language, and briefly describe the purpose of each state. You can describe
+your DFA using a drawing, using formal mathematical notation, or using a product construction.
+\begin{enumerate}[(a)]
+    \item All strings in $\Sym1^*\Sym0\Sym1^*$ whose length is a multiple of 3.
+    \item All strings whose ninth-to-last symbol is \Sym0, or equivalently, the set
+    \begin{equation*}
+        \{x\Sym0z: x, z \in \Sigma^* \text{ and } \abs{z}=8\}.
+    \end{equation*}
+\emph{Hint: don't try to draw the second one. Maybe take a look at the grading rubric to see your options for how to represent DFAs.}
+\end{enumerate}
+
+\begin{Rubric}{NFA/DFA rubric}
+10 points =
+\begin{itemize}
+    \item[+ 2] for an unambiguous description of a DFA or NFA, including the states set $Q$, the start state $s$,
+the accepting states $A$, and the transition function $\delta$.
+  
+\begin{itemize}
+\item Drawings:
+\begin{itemize}
+\item Use an arrow from nowhere to indicate the start state s.
+\item Use doubled circles to indicate accepting states A.
+\item If $A = \emptyset$, say so explicitly.
+\item If your drawing omits a junk/trash/reject/hell state, say so explicitly.
+\item Draw neatly! If we can’t read your solution, we can’t give you credit for it.
+\end{itemize}
+\item Text descriptions: You can describe the transition function either using a 2d array, using mathematical notation, or using an algorithm.
+\begin{itemize}
+\item You must explicitly specify $\delta(q, a)$ for every state $q$ and every symbol $a$.
+\item If you are describing an NFA with $\e$-transitions, you must explicitly specify $\delta(q, \e)$ for every
+state q.
+\item If you are describing a DFA, then every value $\delta(q, a)$ must be a single state.
+\item If you are describing an NFA, then every value $\delta(q, a)$ must be a set of states.
+\item In addition, if you are describing an NFA with $\e$-transitions, then every value $\delta(q, \e)$ must
+be a set of states.
+\end{itemize}
+\item Product constructions: You must give a complete description of each of the DFAs you are combining (as either drawings, text, or recursive products), together with the accepting states of the
+product DFA. In particular, we will not assume that product constructions compute intersections
+by default.
+\end{itemize}
+\item[+ 4] for briefly explaining the purpose of each state in English. This is how you
+argue that your DFA or NFA is correct.
+\begin{itemize}
+\item In particular, each state must have a mnemonic name.
+\item For product constructions, explaining the states in the factor DFAs is both necessary and sufficient.
+\item Yes, we mean it. A perfectly correct drawing of a perfectly correct DFA with no state explanation
+is worth at most 6 points.
+\end{itemize}
+\item[+ 4] for correctness. 
+\begin{itemize}
+\item $-1$ for a single mistake: a single misdirected transition, a single missing or extra accepting state,
+rejecting exactly one string that should be accepted, or accepting exactly one string that should
+be accepted. (The incorrectly accepted/rejected string is almost always the empty string $\e$.)
+\item $-4$ for incorrectly accepting every string, or incorrectly rejecting every string.
+\item $-2$ for incorrectly accepting/rejecting more than one but a finite number of strings.
+\item $-4$ for incorrectly accepting/rejecting an infinite number of strings.
+\end{itemize}
+\end{itemize}
+\end{Rubric}
+
+\item
+Prove that the following languages over the alphabet $\Sigma = \{\Sym0, \Sym1
+\}$ are not regular by proving that there is an infinite fooling set for each of
+them.
+\begin{enumerate}[(a)]
+\item $ \{ \Sym0^a\Sym{10}^b\Sym{10}^c : 2b = a + c \}$.
+\item The set of all palindromes in $\Sigma^*$ whose lengths are divisible by 7.
+\end{enumerate}
+\begin{Rubric}{Standard fooling set rubric}
+10 points =
+\begin{itemize}
+\item[+ 4] for the fooling set.
+\begin{itemize}
+\item $+2$ for explicitly describing the proposed fooling set $F$.
+\item $+2$ if $F$ is truly a fooling set for the lanugage.
+\item $-4$ if $F$ is not a fooling set for the target language.
+\item No credit for the \emph{problem} if $F$ is finite.
+\end{itemize}
+\item[+ 6] for the proof.
+\begin{itemize}
+\item The proof must correctly consider arbitrary pairs of distinct strings $x, y \in F$.
+\item No credit for the proof unless both $x$ and $y$ are always in $F$.
+\item No credit for the proof unless $x$ and $y$ can be any pair of distinct strings in $F$.
+\item $+2$ for explicitly describing a suffix $z$ that distinguishes $x$ and $y$.
+\item $+2$ for proving  either $xz \in L$ or $yz \in L$.
+\item $+2$ for proving either $xz \notin L$ or $yz \notin L$, respectively.
+\end{itemize}
+\end{itemize}
+\end{Rubric}
+
+\end{enumerate}
+% ===========================================================================
+\newpage
+
+\subsection*{Solved problems}
+
+\begin{enumerate}
+\item[4.] 
+For each of the following languages, either prove that the language is regular (by constructing an appropriate DFA, NFA, or regular expression) or prove that the language is not regular (by constructing an infinite fooling set).  
+
+Recall that a \emph{palindrome} is a string that equals its own reversal: $w = w^R$.  Every string of length $0$ or $1$ is a palindrome.
+
+\begin{enumerate}\itemsep4ex
+\item 
+Strings in $(\Sym0+\Sym1)^*$ in which no prefix of length at least $2$ is a palindrome.
+
+\begin{Solution}
+\textbf{Regular:} $\e + \Sym0\Sym1^* + \Sym1\Sym0^*$.  Call this language $L_a$.
+
+Let $w$ be an arbitrary non-empty string in $(\Sym0+\Sym1)^*$.  Without loss of generality, assume $w = \Sym0x$ for some string $x$.  There are two cases to consider.
+\begin{itemize}
+\item
+If $x$ contains a \Sym0, then we can write $w = \Sym0\Sym1^n\Sym0 y$ for some integer $n$ and some string $y$.  The prefix $\Sym0\Sym1^n\Sym0$ is a palindrome of length at least $2$.  Thus, $w\not\in L_a$.
+\item
+Otherwise, $x \in \Sym1^*$.  Every non-empty prefix of $w$ is equal to $\Sym0\Sym1^n$ for some non-negative integer $n \le \abs{x}$.  Every palindrome that starts with \Sym0 also ends with \Sym0, so the only palindrome prefixes of $w$ are $\e$ and $\Sym0$, both of which have length less than $2$.  Thus, $w\in L_a$.
+\end{itemize}
+We conclude that $\Sym0x \in L_a$ if and only if $x\in\Sym1^*$.  A similar argument implies that $\Sym1x \in L_a$ if and only if $x\in\Sym0^*$.  Finally, trivially, $\e\in L_a$.
+\end{Solution}
+\unskip
+\begin{rubric}
+2\textonehalf\ points = \textonehalf\ for “regular” + 1 for regular expression + 1 for justification.  This is more detail than necessary for full credit.
+\end{rubric}
+
+
+\item 
+Strings in $(\Sym0+\Sym1+\Sym2)^*$ in which no prefix of length at least $2$ is a palindrome.
+
+\begin{Solution}\parindent0pt
+\textbf{Not regular.}  Call this language $L_b$.
+
+Consider the set $F = (\Sym{012})^+$.
+
+Let $x$ and $y$ be arbitrary distinct strings in $F$.
+
+Then $x = (\Sym{012})^i$ and $y = (\Sym{012})^j$ for some positive integers $i\ne j$.
+
+Without loss of generality, assume $i<j$.
+
+Let $z$ be the suffix $(\Sym{210})^i$.
+
+\begin{itemize}
+\item
+$xz = (\Sym{012})^i(\Sym{210})^i$ is a palindrome of length $6i\ge 2$, so $xz\not\in L_b$.
+\item
+$yz = (\Sym{012})^j(\Sym{210})^i$ has no palindrome prefixes except $\e$ and $\Sym0$, because $i<j$, so $yz\in L_b$.
+\end{itemize}
+Thus, $z$ is a distinguishing suffix for $x$ and $y$.
+
+We conclude that $F$ is a fooling set for $L_b$.
+
+Because $F$ is infinite, $L_b$ cannot be regular.
+\end{Solution}
+\unskip
+\begin{rubric}
+2\textonehalf\ points = \textonehalf\ for “not regular” + 2 for fooling set proof (standard rubric, scaled).
+\end{rubric}
+
+
+\newpage
+\item 
+Strings in $(\Sym0+\Sym1)^*$ in which no prefix of length at least $3$ is a palindrome.
+
+\begin{Solution}\parindent0pt
+\textbf{Not regular.} Call this language $L_c$.
+
+Consider the set $F = (\Sym{001101})^+$.
+
+Let $x$ and $y$ be arbitrary distinct strings in $F$.
+
+Then $x = (\Sym{001101})^i$ and $y = (\Sym{001101})^j$ for some positive integers $i\ne j$.
+
+Without loss of generality, assume $i<j$.
+
+Let $z$ be the suffix $(\Sym{101100})^i$.
+
+\begin{itemize}
+\item
+$xz = (\Sym{001101})^i(\Sym{101100})^i$ is a palindrome of length $12i\ge 2$, so $xz\not\in L_b$.
+\item
+$yz = (\Sym{001101})^j(\Sym{101100})^i$ has no palindrome prefixes except $\e$ and \Sym0 and \Sym{00}, because $i<j$, so $yz\in L_b$.
+\end{itemize}
+Thus, $z$ is a distinguishing suffix for $x$ and $y$.
+
+We conclude that $F$ is a fooling set for $L_c$.
+
+Because $F$ is infinite, $L_c$ cannot be regular.
+\end{Solution}
+\unskip
+\begin{rubric}
+2\textonehalf\ points = \textonehalf\ for “not regular” + 2 for fooling set proof (standard rubric, scaled).
+\end{rubric}
+
+
+\item 
+Strings in $(\Sym0+\Sym1)^*$ in which no \emph{substring} of length at least $3$ is a palindrome.
+
+\begin{Solution}
+\textbf{Regular.}  Call this language $L_d$.
+
+Every palindrome of length at least $3$ contains a palindrome substring of length $3$ or $4$.  Thus, the complement language $\overline{L_d}$ is described by the regular expression
+\[
+	(\Sym0+\Sym1)^*(\Sym{000} + \Sym{010} + \Sym{101} + \Sym{111} + \Sym{0110} + \Sym{1001}) (\Sym0+\Sym1)^*
+\]
+Thus, $\overline{L_d}$ is regular, so its complement $L_d$ is also regular.
+\end{Solution}
+\unskip
+\begin{Solution}
+\textbf{Regular.} Call this language $L_d$.
+
+In fact, $L_d$ is \emph{finite}!  Appending either \Sym0 or \Sym1 to any of the underlined strings creates a palindrome suffix of length $3$ or $4$.
+\[
+	\e + \Sym0 + \Sym1 + \Sym{00} + \Sym{01} + \Sym{10} + \Sym{11} 
+	+ \Sym{001} + \underline{\Sym{011}} + \underline{\Sym{100}} + \Sym{110} 
+	+ \underline{\Sym{0011}} + \underline{\Sym{1100} }
+\]
+\end{Solution}
+\unskip
+\begin{rubric}
+2\textonehalf\ points = \textonehalf\ for “regular” + 2 for proof:
+\begin{itemize}
+\item 1 for expression for $\overline{L_d}$ + 1 for applying closure
+\item 1 for regular expression + 1 for justification
+\end{itemize}
+\end{rubric}
+
+\end{enumerate}
+
+
+\end{enumerate}
+
+
+\end{document}

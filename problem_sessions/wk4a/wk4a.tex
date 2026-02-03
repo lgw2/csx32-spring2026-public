@@ -1,0 +1,73 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+
+\hidesolutions
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\color{BrickRed}#1}}
+
+% =========================================================
+\begin{document}
+
+\headers{CSCI 432/532}{Problem Session 4a}{Spring 2026}
+
+\noindent
+Describe deterministic finite-state automata that accept each of the following
+languages over the alphabet $\Sigma = \set{\Sym0,\Sym1}$.  You may find it
+easier to describe these DFAs formally than to draw pictures.  However, either
+drawings or formal descriptions are acceptable, as long as the states $Q$, the
+start state~$s$, the accept states $A$, and the transition function $\delta$ are
+all clear.  Try to keep the number of states small.
+
+%----------------------------------------------------------------------
+\bigskip\hrule\bigskip
+\begin{enumerate}
+\parindent 1.5em
+
+\item
+All strings in which the number of \Sym0s is even \textbf{and} the number of \Sym1s is \emph{not} divisible by $3$.
+
+\item
+All strings in which the number of \Sym0s is even \textbf{or} the number of \Sym1s is \emph{not} divisible by $3$.
+
+\item
+All strings that are \textbf{both} the binary representation of an integer divisible by $3$ \textbf{and} the ternary (base-3) representation of an integer divisible by $4$.
+
+For example, the string $\Sym{1100}$ is an element of this language, because it represents $2^3+2^2 = 12$ in binary and $3^3+3^2 = 36$ in ternary.
+
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\bigskip\hrule\bigskip
+\noindent
+\textbf{Harder problems to think about later:}
+
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item
+All strings in which the subsequence \Sym{0101} appears an even number of times.
+
+\item
+All strings $w$ such that $\binom{\abs{w}}{2} \bmod 6 = 4$.
+\\
+\Hint{Maintain both $\binom{\abs{w}}{2} \bmod 6$ and $\abs{w}\bmod 6$.}
+\\
+\Hint{$\binom{n+1}{2} = \binom{n}{2} + n$.}
+
+\Hard
+\item
+All strings $w$ such that $F_{\#(\Sym{10}, w)} \bmod 10 = 4$, where $\#(\Sym{10}, w)$ denotes the number of times \Sym{10} appears as a substring of $w$, and $F_n$ is the $n$th Fibonacci number:
+\[
+	F_n = \begin{cases}
+		0 & \text{if $n=0$}\\
+		1 & \text{if $n=1$}\\
+		F_{n-1} + F_{n-2} & \text{otherwise}
+	\end{cases}
+\]
+
+\end{enumerate}
+
+\end{document}

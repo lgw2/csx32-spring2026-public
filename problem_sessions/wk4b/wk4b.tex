@@ -1,0 +1,139 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+
+\hidesolutions
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\color{BrickRed}#1}}
+
+\def\LP{\Sym{\large (}}
+\def\RP{\Sym{\large )}}
+\def\LB{\Sym{\large [}}
+\def\RB{\Sym{\large ]}}
+\def\LC{\Sym{\large \{}}
+\def\RC{\Sym{\large \}}}
+
+% =========================================================
+\begin{document}
+
+\headers{CSCI 432/532}{Problem Session 4b}{Spring 2026}
+
+\noindent
+Prove that each of the following languages is \EMPH{not} regular using fooling sets.
+
+\bigskip
+\begin{enumerate}
+\parindent 1.5em \itemsep 4ex
+%----------------------------------------------------------------------
+
+\item
+$\Setbar{\Sym{0}^{2^n}}{n\ge 0}$
+
+\item
+$\set{\Sym0^{2n}\Sym1^n\mid n\ge 0}$
+
+\item
+$\set{\Sym0^m\Sym1^n\mid m\ne 2n}$
+
+\item
+Strings over $\set{\Sym0,\Sym1}$ where the number of \Sym0s is exactly twice the number of \Sym1s.
+
+\item
+Strings of properly nested parentheses \LP \RP, brackets \LB \RB, and braces \LC \RC.  For example, the string \LP\LB\RB\RP\LC\RC\ is in this language, but the string \LP\LB\RP\RB\ is not, because the left and right delimiters don't match.
+
+
+\end{enumerate}
+
+
+\bigskip
+\noindent\textbf{Harder problems to think about later:}
+
+\begin{enumerate}\itemsep 4ex
+\setcounter{enumi}5
+
+\item
+Strings of the form $w_1\Sym{\#}w_2\Sym{\#}\cdots\Sym{\#}w_n$ for some $n\ge 2$, where each substring $w_i$ is a string in $\set{\Sym0,\Sym1}^*$, and some pair of substrings $w_i$ and $w_j$ are equal.
+
+\item
+$\Setbar{\Sym{0}^{n\smash{^2}}\strut}{n\ge 0}$
+
+\Hard
+\item
+$\Setbar{w\in (\Sym{0}+\Sym{1})^*}{\text{$w$ is the binary representation of a perfect square}}$
+
+
+\end{enumerate}
+
+
+\newpage
+\noindent\textbf{Solved problem:}
+
+\begin{enumerate}\itemsep 4ex
+\setcounter{enumi}{8}
+
+\item
+Prove that the language $L = \Setbar{w\in(\Sym0+\Sym1)^*}{\#(\Sym0, w) = \#(\Sym1,w)}$ is \EMPH{not} regular.
+
+\begin{Solution}[fooling set $\Sym0^*$]\parindent 0pt~
+
+Consider the infinite set $F  = \set{\Sym0^n \mid n\ge 0}$, or more simply $F = \Sym0^*$.
+
+We claim that every pair of distinct strings in $F$ has a distinguishing suffix.
+
+\begin{shadowbox}{0.8}\parskip0.5ex
+Let $x$ and $y$ be arbitrary distinct strings in $F$.
+
+The definition of $F$ implies $x = \Sym0^i$ and $y=\Sym0^j$ for some integers $i\ne j$.
+
+Let $z$ be the string $\Sym1^i$.
+
+Then $xz = \Sym0^i\Sym1^i \in L$.
+
+But $yz = \Sym0^j\Sym1^i \not\in L$, because $i\ne j$.
+
+So $z$ is a distinguishing suffix for $x$ and $y$.
+\end{shadowbox}
+
+We conclude that $F$ is a fooling set for $L$.
+
+Because $F$ is infinite, $L$ cannot be regular.\EOS
+
+\medskip
+\hrule
+\smallskip
+\emph{This is \textbf{exactly} the proof from the lecture notes for the canonical non-regular language $\set{\Sym0^n\Sym1^n \mid n\ge 0}$.  The inner box is a proof that every pair of district strings in $F$ has a distinguishing suffix.}
+\end{Solution}
+\unskip
+
+\begin{Solution}[fooling set $\Sym0^*$]\parindent 0pt~
+
+For any natural number $n$, let $x_n = \Sym0^n$, and let $F = \set{x_n \mid n\ge 0} = \Sym0^*$.
+
+Let $i$ and $j$ be arbitrary distinct natural numbers.
+
+Let $z_{ij}$ be the string $\Sym1^i$.
+
+Then $x_iz_{ij} = \Sym0^i\Sym1^i \in L$.
+
+But $x_jz_{ij} = \Sym0^j\Sym1^i \not\in L$, because $i\ne j$.
+
+So $z_{ij}$ is a distinguishing suffix for $x_i$ and $x_j$.
+
+We conclude that $F$ is a fooling set for $L$.
+
+Because $F$ is infinite, $L$ cannot be regular.
+\EOS
+
+\medskip
+\hrule
+\smallskip
+\emph{This is another way of writing exactly the same proof that emphasizes the counter intuition; any algorithm that recognizes $L$ \textbf{must} count \Sym0s.}
+\end{Solution}
+\unskip
+
+\end{enumerate}
+
+\end{document}
