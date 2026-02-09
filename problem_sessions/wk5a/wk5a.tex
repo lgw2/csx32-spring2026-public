@@ -1,0 +1,60 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+
+\hidesolutions
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\color{BrickRed}#1}}
+\def\ForceSym#1{\setbox0\hbox{A}\hbox to \wd0{\hss #1\hss}}
+\def\Blank{\ForceSym{$\diamond$}}
+
+% =========================================================
+\begin{document}
+
+\headers{CSCI 432/532}{Problem Session 5a}{Spring 2026}
+
+\noindent
+Design \emph{nondeterministic} finite-state automata that accept the following
+languages over the binary alphabet \{\Sym{0}, \Sym{1}\}. Briefly describe how your NFA works.
+
+Your NFAS can have multiple start states and/or $\e$-transitions, but remember to write that
+down as part of your description. Either drawings or formal descriptions are acceptable,
+as long as the states $Q$, the start state $s$ (or start states $S$), the
+accepting states $A$, and the transition function $\delta$ are all clear.
+
+\bigskip\hrule\bigskip
+\begin{enumerate}
+\parindent 1.5em \itemsep 4ex
+%----------------------------------------------------------------------
+\setcounter{enumi}{-1}
+\item $\emptyset$
+\item Binary strings that end with the suffix \Sym{001}.
+\item Binary strings that contain at least one of the substrings \Sym{11},
+\Sym{101}, or \Sym{1001}.
+\item (\Sym{01})*(\Sym{0101})*(\Sym{10})*
+\item $\set{w \in \set{\Sym{0},\Sym{1}}^* \mid \min \set{\#(\Sym{0}, w), \#(1, w)} \leq 3}$
+\item Binary strings that contain a substring of the form $\Sym{1}x\Sym{1}$, where $|x|$ is odd.
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\bigskip\hrule\bigskip
+\noindent
+\textbf{Problems to think about later:}
+
+\begin{enumerate}
+\setcounter{enumi}{5}
+\item Binary strings with length at least $7$ whose $7$th symbol from the end is
+\Sym{1}.
+\item Binary strings that contain at least one palindrome substring of length
+$4$. \emph{Hint: what are the palindromes of length $4$?}
+\item Binary strings that contain both \Sym{01010} and \Sym{1001001} as 
+substrings.
+\item Binary strings that contain \emph{at least two} of the substrings 
+\Sym{11}, \Sym{101}, and \Sym{1001}.
+
+\end{enumerate}
+
+\end{document}

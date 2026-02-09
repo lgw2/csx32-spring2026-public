@@ -1,0 +1,203 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+
+\hidesolutions
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\color{BrickRed}#1}}
+\def\ForceSym#1{\setbox0\hbox{A}\hbox to \wd0{\hss #1\hss}}
+\def\Blank{\ForceSym{$\diamond$}}
+
+% =========================================================
+\begin{document}
+
+\headers{CSCI 432/532}{Problem Session 5b}{Spring 2026}
+
+\noindent
+Let $L$ be an arbitrary regular language over the alphabet $\Sigma = \Set{\Sym0,\Sym1}$.  Prove that the following languages are also regular.  (You probably won't get to all of these during the problem session.)
+
+\begin{enumerate}
+
+\item
+Let $\mathsc{InsertAny\Sym1s}(L)$ is the set of all strings that can be obtained from strings in~$L$ by inserting \EMPH{any number of} \Sym1s anywhere in the string.  For example:
+\[
+	 \mathsc{InsertAny\Sym1s}(\Set{\e,~ \Sym{1},~ \Sym{00}})
+	 =
+	 \set{\e,~ \Sym1,~ \Sym{11},~ \Sym{111}, \dots,~
+	 	 \Sym{00},~ \Sym{100},~ \Sym{0111110}, 
+		 \Sym{1110111111101111}, \dots}
+\]
+Prove that the language $\mathsc{InsertAny\Sym1s}(L)$ is regular.
+
+\begin{Solution}
+Let $M = (Q, s, A, \delta)$ be an arbitrary DFA that accepts the regular language~$L$.  We construct a new \EMPH{NFA with $\e$-transitions} $M' = (Q', s', A', \delta')$ that accepts $\mathsc{InsertAny\Sym1s}(L)$ as follows.
+
+Intuitively, $M’$ \emph{guesses} which \Sym1s in the input string have been inserted, skips over those \Sym1s, and simulates $M$ on the original string $w$.  $M’$ has the same states and start state and accepting states as $M$, but it has a different transition function.
+%
+\begin{align*}
+	Q' & = Q
+\\
+	s' & = s
+\\
+	A' & = A
+\\[1ex]
+	\delta'(q, \Sym0) & = \Set{ ~\strut\delta(q, \Sym0)~ }
+\\[1ex]
+	\delta'(q, \Sym1) & = \Set{\strut\hspace{3in}}
+\\[1ex]
+	\delta'(q, \e) & = \Set{\strut\hspace{3in}}
+\end{align*}
+\unskip
+\end{Solution}
+
+% --------------------------------------------------------------------------------
+\newpage
+
+\item
+Let $\mathsc{DeleteAny\Sym1s}(L)$ is the set of all strings that can be obtained from strings in~$L$ by inserting \EMPH{any number of} \Sym1s anywhere in the string.  For example:
+\[
+	 \mathsc{DeleteAny\Sym1s}(\Set{\e,~ \Sym{00},~ \Sym{1101}})
+	 =
+	 \set{\e, \Sym0, \Sym{00}, \Sym{01}, \Sym{10}, \Sym{101}, \Sym{110},  \Sym{1101}}
+\]
+Prove that the language $\mathsc{DeleteAny\Sym1s}(L)$ is regular.
+
+\begin{Solution}
+Let $M = (Q, s, A, \delta)$ be an arbitrary DFA that accepts the regular language~$L$.  We construct a new \EMPH{NFA with $\e$-transitions} $M' = (Q', s', A', \delta')$ that accepts ${DeleteAny\Sym1s}(L)$ as follows.
+
+Intuitively, $M’$ \emph{guesses} where \Sym1s have been deleted from its input string, and simulates the original machine $M$ on the guessed mixture of input symbols and \Sym1s.  $M’$ has the same states and start state and accepting states as $M$, but a different transition function.
+%
+\begin{align*}
+	Q' & = Q
+\\
+	s' & = s
+\\
+	A' & = A
+\\[1ex]
+	\delta'(q, \Sym0) & = \Set{ ~\strut\delta(q, \Sym0)~ }
+\\[1ex]
+	\delta'(q, \Sym1) & = \Set{\strut\hspace{3in}}
+\\[1ex]
+	\delta'(q, \e) & = \Set{\strut\hspace{3in}}
+\end{align*}
+\unskip
+\end{Solution}
+
+% --------------------------------------------------------------------------------
+\newpage
+\item
+Let $\mathsc{InsertOne\Sym1}(L) := \set{x\Sym1y \mid xy\in L}$ denote the set of all strings that can be obtained from strings in~$L$ by inserting \EMPH{exactly one} \Sym1.  For example:
+\[
+	 \mathsc{InsertOne\Sym1}(\Set{\e,~ \Sym{00},~ \Sym{101101}})
+	 =
+	 \set{\Sym1,~ \Sym{100},~ \Sym{010},~ \Sym{001},~
+	 	 \Sym{1101101},~ \Sym{1011101},~ \Sym{1011011}}
+\]
+Prove that the language $\mathsc{InsertOne\Sym1}(L)$ is regular.
+
+\begin{Solution}
+Let $M = (Q, s, A, \delta)$ be an arbitrary DFA that accepts the regular language~$L$.  We construct a new \EMPH{NFA with $\e$-transitions} $M' = (Q', s', A', \delta')$ that accepts $\mathsc{InsertOne\Sym1}(L)$ as follows.
+
+If the input string $w$ does not contain a \Sym1, then $M’$ must rejects it; otherwise, intuitively, $M’$ \emph{guesses} which \Sym1 was inserted into $w$, skips over that \Sym1, and simulates $M$ on the remaining string $xy$.
+
+$M’$ consists of two copies of $M$, one to process the prefix $x$ and the other to process the suffix $y$.  State $(q, \mathsc{False})$ means (the simulation of) $M$ is in state $q$ and $M'$ has not yet skipped over a \Sym1.  State $(q, \mathsc{True})$ means (the simulation of) $M$ is in state $q$ and $M'$ has already skipped over a \Sym1.
+%
+\begin{align*}
+	Q' & = Q \times \set{\mathsc{True}, \mathsc{False}}
+\\
+	s' & = (s, \mathsc{False})
+\\[1ex]
+	A' & = 
+\\[3ex]
+	\delta'((q, \mathsc{False}), \Sym0)
+			& = \Set{~(\delta(q, \Sym0),\strut \mathsc{False})~}
+\\[1ex]
+	\delta'((q, \mathsc{False}), \Sym1) & = \Set{\strut\hspace{3in}}
+\\[1ex]
+	\delta'((q, \mathsc{False}), \e) & = \Set{\strut\hspace{3in}}
+\\[3ex]
+	\delta'((q, \mathsc{True}), \Sym0) & = \Set{\strut\hspace{3in}}
+\\[1ex]
+	\delta'((q, \mathsc{True}), \Sym1) & = \Set{\strut\hspace{3in}}
+\\[1ex]
+	\delta'((q, \mathsc{True}), \e) & = \Set{\strut\hspace{3in}}
+\end{align*}
+
+\end{Solution}
+
+
+% --------------------------------------------------------------------------------
+\newpage
+\item
+Let $\mathsc{DeleteOne\Sym1}(L) := \set{xy \mid x\Sym1y\in L}$ denote the set of all strings that can be obtained from strings in~$L$ by deleting exactly one \Sym1.  For example:
+\[
+	\mathsc{DeleteOne\Sym1}(\set{\e,~ \Sym{00},~ \Sym{101101}})
+	=
+	\set{\Sym{01101},~ \Sym{10101},~ \Sym{10110}}
+\]
+Prove that the language $\mathsc{DeleteOne\Sym1}(L)$ is regular.
+
+\begin{Solution}
+Let $M = (\Sigma, Q, s, A, \delta)$ be a DFA that accepts the regular language~$L$.  We construct an \EMPH{NFA with $\e$-transitions}  $M' = (\Sigma, Q', s', A', \delta')$ that accepts $\mathsc{DeleteOne\Sym1}(L)$ as follows.
+
+Intuitively, $M’$ \emph{guesses} where the \Sym1 was deleted from its input string.  It simulates the original DFA $M$ on the prefix $x$ before the missing \Sym1, then the missing \Sym1, and finally the suffix $y$ after the missing \Sym1.
+
+$M’$ consists of two copies of $M$, one to process the prefix $x$ and the other to process the suffix $y$.  State $(q, \mathsc{False})$ means (the simulation of) $M$ is in state $q$ and $M'$ has not yet reinserted a \Sym1.  State $(q, \mathsc{True})$ means (the simulation of) $M$ is in state $q$ and $M'$ has already reinserted a \Sym1.
+%
+\begin{align*}
+	Q' & = Q \times \set{\mathsc{True}, \mathsc{False}}
+\\
+	s' & = (s, \mathsc{False})
+\\[1ex]
+	A' & = 
+\\[3ex]
+	\delta'((q, \mathsc{False}), \Sym0)
+			& = \Set{~ (\delta(q, \Sym0),\strut \mathsc{False}) ~}
+\\[1ex]
+	\delta'((q, \mathsc{False}), \Sym1) & = \Set{\strut\hspace{3in}}
+\\[1ex]
+	\delta'((q, \mathsc{False}), \e) & = \Set{\strut\hspace{3in}}
+\\[3ex]
+	\delta'((q, \mathsc{True}), \Sym0) & = \Set{\strut\hspace{3in}}
+\\[1ex]
+	\delta'((q, \mathsc{True}), \Sym1) & = \Set{\strut\hspace{3in}}
+\\[1ex]
+	\delta'((q, \mathsc{True}), \e) & = \Set{\strut\hspace{3in}}
+\end{align*}
+\end{Solution}
+
+
+\end{enumerate}
+
+\newpage
+\noindent
+\textbf{Work on these later:}
+Consider the following recursively defined function on strings:
+\[
+	\emph{evens}(w) := \begin{cases}
+		\e	& \text{if $w = \e$} \\
+		\e	& \text{if $w = a$ for some symbol $a$} \\
+		b \cdot \emph{evens}(x)
+			& \text{if $w = abx$ for some symbols $a$ and $b$ and some string $x$}
+	\end{cases}
+\]
+Intuitively, $\emph{evens}(w)$ skips over every other symbol in~$w$, starting with the first symbol.  For example, $\emph{evens}(\Sym{THE\Blank SNAIL}) = \Sym{H\Blank NI}$ and $\emph{evens}(\Sym{GROB\Blank GOB\Blank GLOB\Blank GROD}) = \Sym{RBGBGO\Blank RD}$.
+
+Let $L$ be an arbitrary regular language over the alphabet $\Sigma = \Set{\Sym0,\Sym1}$.
+
+
+\begin{enumerate}
+\setcounter{enumi}{4}
+\item
+Prove that the language $\mathsc{Unevens}(L) := \Setbar{w}{\emph{evens}(w)\in L}$ is regular.
+
+\item
+Prove that the language $\mathsc{Evens}(L) := \Setbar{\emph{evens}(w)}{w\in L}$ is regular..
+\end{enumerate}
+
+
+
+\end{document}
