@@ -24,41 +24,44 @@
 \headers{CSCI 432/532}{Problem Session 6b}{Spring 2026}
 
 \noindent
-You saw the following context-free grammars in class on Wednesday; in each example, the grammar itself is on the left; the explanation for each non-terminal is on the right.
-\begin{itemize}
-\item
-Properly nested strings of parentheses. 
-\begin{align*}
-	S & \to \e\mid S \LP S \RP
-		&& \text{properly nested parentheses}
-\end{align*}
-Here is a different grammar for the same language:
-\begin{align*}
-	S & \to \e\mid \LP S \RP \mid S S
-		&& \text{properly nested parentheses}
-\end{align*}
-
-\item
-$\set{\Sym0^m\Sym1^n\mid m\ne n}$.  This is the set of all binary strings composed of some number of \Sym0s followed by a \emph{different} number of \Sym1s.
+In class on Wednesday we saw the following context-free grammar. The grammar is
+on the left; the explanation for the last non-terminal is on the right. In order to define
+$L(S)$, let's first figure out what $L(A)$ and $L(B)$ are.
 \begin{align*}
 	S & \to A \mid B
-		&& \Setbar{\Sym0^m\Sym1^n}{m\ne n} \\
-	A & \to \Sym0A \mid \Sym0C
-		&& \Setbar{\Sym0^m\Sym1^n}{m > n} \\
-	B & \to B\Sym1 \mid C\Sym1
-		&& \Setbar{\Sym0^m\Sym1^n}{m < n} \\
-	C & \to \e \mid \Sym0C\Sym1
-		&& \Setbar{\Sym0^m\Sym1^n}{m = n}
+		&& 
+	\\
+	A & \to \Sym0 A \mid \Sym0 C
+		&&
+	\\
+	B & \to B \Sym1 \mid C \Sym1
+		&&
+	\\
+	C & \to \e \mid \Sym0 C \Sym1
+		&& \set{\Sym0^n\Sym1^n\mid n\ge 0}
 \end{align*}
-\end{itemize}
+
+\bigskip
+
+\begin{enumerate}
+\itemsep 4ex
+	\item What is $L(A)$?
+	\item What is $L(B)$?
+	\item What is $L(S)$?
+\end{enumerate}
+
 \hrule
 \bigskip
 
 \noindent
-Give context-free grammars for each of the following languages over the alphabet $\Sigma = \set{\Sym0,\Sym1}$.  For each grammar, describe the language for each non-terminal, either in English or using mathematical notation,  as in the examples above.  We probably won't finish all of these during the lab session.
+Give context-free grammars for each of the following languages over the alphabet
+$\Sigma = \set{\Sym0,\Sym1}$.  For each grammar, describe the language for each
+non-terminal, either in English or using mathematical notation,  as in the
+examples above.  We probably won't finish all of these during the problem session.
 
 
 \begin{enumerate}
+	\setcounter{enumi}{3}
 \itemsep 4ex
 %----------------------------------------------------------------------
 
