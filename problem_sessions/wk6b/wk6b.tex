@@ -1,0 +1,119 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\color{BrickRed}#1}}
+\def\ForceSym#1{\setbox0\hbox{A}\hbox to \wd0{\hss #1\hss}}
+\def\Blank{\ForceSym{$\square$}}
+
+\def\LP{\Sym{\large (}}
+\def\RP{\Sym{\large )}}
+\def\LB{\Sym{\large [}}
+\def\RB{\Sym{\large ]}}
+\def\LC{\Sym{\large \{}}
+\def\RC{\Sym{\large \}}}
+
+
+% =========================================================
+\begin{document}
+
+\headers{CSCI 432/532}{Problem Session 6b}{Spring 2026}
+
+\noindent
+You saw the following context-free grammars in class on Wednesday; in each example, the grammar itself is on the left; the explanation for each non-terminal is on the right.
+\begin{itemize}
+\item
+Properly nested strings of parentheses. 
+\begin{align*}
+	S & \to \e\mid S \LP S \RP
+		&& \text{properly nested parentheses}
+\end{align*}
+Here is a different grammar for the same language:
+\begin{align*}
+	S & \to \e\mid \LP S \RP \mid S S
+		&& \text{properly nested parentheses}
+\end{align*}
+
+\item
+$\set{\Sym0^m\Sym1^n\mid m\ne n}$.  This is the set of all binary strings composed of some number of \Sym0s followed by a \emph{different} number of \Sym1s.
+\begin{align*}
+	S & \to A \mid B
+		&& \Setbar{\Sym0^m\Sym1^n}{m\ne n} \\
+	A & \to \Sym0A \mid \Sym0C
+		&& \Setbar{\Sym0^m\Sym1^n}{m > n} \\
+	B & \to B\Sym1 \mid C\Sym1
+		&& \Setbar{\Sym0^m\Sym1^n}{m < n} \\
+	C & \to \e \mid \Sym0C\Sym1
+		&& \Setbar{\Sym0^m\Sym1^n}{m = n}
+\end{align*}
+\end{itemize}
+\hrule
+\bigskip
+
+\noindent
+Give context-free grammars for each of the following languages over the alphabet $\Sigma = \set{\Sym0,\Sym1}$.  For each grammar, describe the language for each non-terminal, either in English or using mathematical notation,  as in the examples above.  We probably won't finish all of these during the lab session.
+
+
+\begin{enumerate}
+\itemsep 4ex
+%----------------------------------------------------------------------
+
+\item
+All palindromes in $\Sigma^*$
+
+\item
+All palindromes in $\Sigma^*$ that contain an even number of \Sym1s
+
+\item
+All palindromes in $\Sigma^*$ that end with \Sym1
+
+\item
+All palindromes in $\Sigma^*$ whose length is divisible by $3$
+
+\item
+All palindromes in $\Sigma^*$ that do not contain the substring \Sym{00}
+
+\end{enumerate}
+
+\newpage
+\noindent\textbf{Harder problems to work on later:}
+
+\begin{enumerate}\itemsep 4ex
+\setcounter{enumi}{5}
+
+\item
+$\set{\Sym0^{2n}\Sym1^n\mid n\ge 0}$
+
+\item
+$\set{\Sym0^m\Sym1^n\mid m\ne 2n}$
+
+\Hint{If $m\ne 2n$, then either $m<2n$ or $m>2n$.  Extend the previous grammar, but pay attention to parity.  This language contains the string \Sym{01}.}
+
+
+\item
+$\set{\Sym0,\Sym1}^* \setminus \set{\Sym0^{2n}\Sym1^n\mid n\ge 0}$
+
+\Hint{Extend the previous grammar.  What’s missing?}
+
+
+\item
+$\Setbar{w\in\set{\Sym0,\Sym1}^*}{\strut\#(\Sym{0},w) = 2\cdot \#(\Sym{1}, w) }$ — Binary strings where the number of \Sym0s is exactly twice the number of \Sym1s.
+
+
+\Hard
+\item
+$\set{\Sym0,\Sym1}^* \setminus \Setbar{ww}{w \in\set{\Sym0,\Sym1}^*}$.
+
+\emph{[Anti-hint: The language $\Setbar{ww}{w\in {\Sym0,\Sym1}^*}$ is \textbf{not} context-free.  Thus, the complement of a context-free language is not necessarily context-free!]}
+
+
+
+\end{enumerate}
+
+
+
+\end{document}
