@@ -1,0 +1,51 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\color{BrickRed}#1}}
+\def\ForceSym#1{\setbox0\hbox{A}\hbox to \wd0{\hss #1\hss}}
+\def\Blank{\ForceSym{$\square$}}
+
+\def\LP{\Sym{\large (}}
+\def\RP{\Sym{\large )}}
+\def\LB{\Sym{\large [}}
+\def\RB{\Sym{\large ]}}
+\def\LC{\Sym{\large \{}}
+\def\RC{\Sym{\large \}}}
+
+
+% =========================================================
+\begin{document}
+
+\headers{CSCI 432/532}{Problem Session 7a}{Spring 2026}
+
+
+\begin{enumerate}
+\item 
+For each of the following languages over the alphabet $\Sigma = \{\Sym0, \Sym1\}$, describe a Turing machine that decides the language. You don't need to give a full set of states and a transition function; just describe the steps that the Turing machine would take.
+\begin{enumerate}[(a)]
+    \item All palindromes.
+    \item $\{\Sym0^a\Sym1^b\Sym0^{ab} : a,b \geq 1\}$
+\end{enumerate}
+
+\item Say that a \EMPH{write-twice Turing machine} is a single-tape Turing machine that can alter
+each tape square at most twice (including the input portion of the tape). Show that this variant of a Turing machine model is equivalent to the ordinary Turing machine model
+by describing how to simulate this behavior with a standard Turing machine.
+\item Say that a \EMPH{write-once Turing machine} is a single-tape Turing machine that can alter
+each tape square at most once (including the input portion of the tape). Show that this variant of a Turing machine model is equivalent to the ordinary Turing machine model.
+\item A \EMPH{Turing machine with left reset} is similar to an ordinary Turing
+machine, but the transition function has the form $\delta: Q \times \Gamma \to Q
+\times \Gamma \times \{R, RESET\}$. If $\delta(q,a) = (r, b, RESET)$, then when
+the machine is in state $q$ reading an $a$, the machine's head jumps to the
+left-hand end of the tape after it writes $b$ on the tape and enters state $r$.
+Note that these machines do not have the usual ability to move the head one
+symbol to the left. Show that Turing machines with left reset recognize the
+class of Turing-recognizable languages.
+\end{enumerate}
+
+
+\end{document}
