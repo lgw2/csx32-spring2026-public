@@ -1,0 +1,265 @@
+% ---------
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage{fourier-orns}
+\usepackage{mathtools}
+\usepackage[normalem]{ulem} % either use this (simple) or
+\usepackage{tikz}
+
+\def\To{\leadsto}
+\def\Tostar{\mathrel{\To\!\!\!^*}}
+\def\derives{\Tostar}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\color{BrickRed}#1}}
+\def\BlueSym#1{\textbf{\texttt{\color{RoyalBlue}#1}}}
+\allowdisplaybreaks
+
+\begin{document}
+
+\begin{center}
+\Large\textbf{CSCI 432/532, Spring 2026}%
+\\
+\LARGE\textbf{Homework 6}%
+\\[0.5ex]
+\large Due Monday, March 2  at 8:30am
+\end{center}
+
+\bigskip
+\hrule
+\bigskip
+
+\subsection*{Submission Requirements}
+\begin{itemize}
+    \item Type or clearly hand-write your solutions into a PDF format so that they are legible and professional. Submit your PDF on Canvas. 
+	\item Put each \textbf{sub}problem on a separate page and select the corresponding problem via the Gradescope interface.
+    \item Do not submit your first draft. Type or clearly re-write your solutions for your final submission. If your submission is not legible, we will ask you to resubmit.
+\end{itemize}
+
+\subsection*{Collaboration and Resources}
+
+The \emph{best} resources for completing the homework are (in no particular order):
+\begin{itemize}
+	\item Your own notes from lectures and problem sessions, and/or lecture recordings.
+	\item The lecture notes linked from the course website for the lecture day.
+	\item The questions channel on Discord.
+	\item Office hours.
+	\item Discussions with classmates.
+\end{itemize}
+You may also access almost any resource in preparing your solution to the
+homework. The exception is that you may not seek answers to the problems on the
+homework directly, such as by pasting them into a GenAI tool, searching for
+solutions on a search engine, looking for them on Chegg or similar websites, or
+asking another person for the solution.
+
+Additionally, you \EMPH{must}
+\begin{itemize}
+    \item Write your solutions in your own words---this means that you should never be \emph{copying}
+    anything of substance from any source, and
+    \item credit every resource you use, including GenAI tools, by providing links or full chat transcripts.
+    If you use the provided LaTeX template, you can use the \texttt{Sources}
+    environment for this. Ask if you need help!
+\end{itemize}
+
+
+\begin{boxquote}{0.9}
+Remember, if you choose to use GenAI tools, not only must you provide a full
+transcript of your conversation (or a link to one), you must also use the
+following prompt (or some variation of it), and provide a full transcript of
+the conversation.
+\end{boxquote}  
+
+Prompt:
+\begin{boxquote}{0.9}
+You are acting as a teaching assistant for an advanced undergraduate/graduate
+algorithms and computer science theory course.
+
+Your role is not to provide full solutions or final answers.
+
+Instead, you should act like we are having a conversation. Ask me a single
+question and let me respond. Avoid asking me many questions at once or giving
+me a lot of information at one time. Guide me using hints, leading questions,
+partial insights, and sanity checks.  Help me debug my own proofs, algorithms,
+or reductions. Do not give a complete solution or full proofs. Be patient with
+me. Don't give me details so that I can move on to the next part of a problem.
+Make sure that I understood before moving on.
+
+The course uses Jeff Erickson's Models of Computation lecture notes, so you should
+guide me to answer problems using the definitions, notation, and style from those notes.
+
+Assume I am a serious student trying to learn, not to shortcut the assignment.
+I am attaching the assignment, so you should refuse to provide a complete solution
+to the problems listed. Of course, you can walk me through the "Solved
+Problems" listed at the end if I ask.
+\end{boxquote}  
+
+
+
+\newpage
+%----------------------------------------------------------------------
+
+\headers{CSCI 432/532}{Homework 6 (due March 2)}{Spring 2026}
+
+\begin{enumerate}
+%\parindent 1.5em \itemsep 4ex plus 0.5fil
+
+%----------------------------------------------------------------------
+\item Describe (as in the problem session solutions---note that you do
+\emph{not} need to give a full specification of states, transitions, etc.) a
+Turing machine that decides the following language: $\{ww : w \in \{\Sym0,
+\Sym1\}^*\}$.
+
+\begin{Rubric}{TM rubric}
+10 points =
+\begin{itemize}
+\item[+ 2] for an English description of a Turing machine, regardless of correctness.
+\item[+ 6] for correctness.
+\item[+ 2] for an appropriate mix of detail and high-level intuition.
+\end{itemize}
+\end{Rubric}
+
+%----------------------------------------------------------------------
+\item A \EMPH{Turing machine with stay put instead of left} is similar to an
+ordinary Turing machine, but the transition function has the form $\delta: Q
+\times \Gamma \to Q \times \Gamma \times \{R, S\}$. At each point, the machine
+can move its head right or let it stay put in the same position.
+\begin{enumerate}[(a)]
+	\item Show that this Turing machine variant is \emph{not}
+equivalent to a standard Turing machine. 
+\item What class of languages do these
+machines recognize? 
+\end{enumerate}
+
+\begin{Rubric}{TM simulation rubric}
+10 points =
+\begin{itemize}
+\item[+ 2] for an English description of either (1) how to simulate a standard Turing machine with the new type of Turing machine or (2) why standard Turing machine can't be simulated with the new type of Turing machine.
+\item[+ 6] for correctness.
+\item[+ 2] for an appropriate mix of detail and high-level intuition.
+\end{itemize}
+\end{Rubric}
+
+\item 
+Consider the language $\mathsc{NeverReject} = \{ \langle M \rangle :
+\textsc{Reject}(M) = \emptyset \}$; that is, the set of all (encodings of)
+Turing machines that do not reject any input. 
+\begin{enumerate}
+	\item Prove that $\mathsc{NeverReject}$
+is undecidable via \EMPH{diagonalization}.
+\begin{Rubric}{Diagnoalization rubric}
+10 points =
+\begin{itemize}
+\item[+ 4] for a correct wrapper Turing machine
+\item[+ 6] for self-contradiction proof (= 3 for $\Longleftarrow$ + 3 for $\Longrightarrow$)
+\end{itemize}
+\end{Rubric}
+
+\item Prove that $\mathsc{NeverReject}$ is undecidable via \EMPH{reduction}
+(for example, from the halting problem).
+
+\begin{Rubric}{Reduction rubric}
+10 points =
+\begin{itemize}
+\item[+ 4] for a correct reduction
+\item[+ 3] for ''if" proof
+\item[+ 3] for ''only if" proof
+\end{itemize}
+\end{Rubric}
+
+
+\end{enumerate}
+\end{enumerate}
+
+
+% ===========================================================================
+\newpage
+
+\subsection*{Solved problems}
+
+\begin{enumerate}\parindent 1.5em
+
+\item A \EMPH{Turing machine with a doubly infinite tape} is similar to an ordinary
+Turing machine, but the tape is infinite in both directions. Show that this Turing
+machine variant is equivalent to a standard Turing machine.
+
+\begin{Solution}
+To show that a Turing machine with a doubly infinite tape is equivalent
+to a standard Turing machine, we can show that a standard Turing
+machine can simulate a Turing machine with a doubly infinite tape.
+To do so, we must simulate being able to write arbitrarily far to the left of the starting
+point. In class, we saw that this can be done by simulating a second tape representing
+negative indices using our tape alphabet.
+
+Another way to do this is to use the original tape alphabet, but copy the entire
+tape contents one position to the right whenever we need to write to the left of
+the starting point. We can add a left sentinel symbol and right sentinel symbol to the
+tape alphabet to mark the left and right ends of the tape contents. Whenever we need
+to write to the right sentinel, we shift it one to the right and write the new symbol
+in its old place. Whenever we need to write to the left sentinel, we shift all the tape contents one
+to the right and write the new symbol in the left sentinel's old place. This way, we can simulate a doubly infinite tape using a standard Turing machine.
+\end{Solution}
+
+\item Conside the language $\mathsc{SelfHalt} = \{ \langle M \rangle : M \text{
+halts on input } \langle M \rangle \}$; that is, the set of all (encodings of)
+Turing machines that halt when given their own encoding as input. Prove that
+$\mathsc{SelfHalt}$ is undecidable.
+
+\begin{Solution}
+Suppose to the contrary that there is a Turing machine $SH$ such that
+$\mathsc{Accept}(SH) = \mathsc{SelfHalt}$ and $\mathsc{Diverge}(SH) =
+\emptyset$.
+
+Let $SH^X$ be the Turing machine
+obtained from $SH$ by redirecting every transition to \Sym{accept} to a new hanging
+state \Sym{hang}, and then redirecting every transition to \Sym{reject} to
+\Sym{accept}. Then $\mathsc{Accept}(SH^X) = \Sigma^* \setminus \mathsc{SelfHalt}$ and
+$\mathsc{Reject}(SH^X) = \emptyset$.  It follows that $SH^X$ accepts $\langle SH^X
+\rangle$ if and only if $SH^X$ does not halt on $\langle SH^X \rangle$, and
+we have a contradiction.
+\end{Solution}
+
+\item
+Consider the language $\mathsc{SometimesHalt} = \set{ \seq{M} \mid \text{$M$~halts
+on at least one input string}}$.  Note that $\seq{M}\in \mathsc{SometimesHalt}$ does not imply that $M$ \emph{accepts} any strings; it is enough that $M$ \emph{halts} on (and possibly rejects) some string.
+
+Prove that \mathsc{SometimesHalt} is undecidable.
+
+\begin{Solution}
+We can reduce the standard halting problem to \mathsc{Sometimes\-Halt} as follows:
+\begin{algo}
+	\textul{$\mathsc{DecideHalt}(\seq{M, w})$:}\+
+\\	Encode the following Turing machine $M'$:\+
+\\	\color{OliveGreen}
+	\qquad \begin{algorithm}
+		\textul{$M'(x)$:}\+
+	\\		(ignore $x$)
+	\\		run $M$ on input $w$
+	\end{algorithm}
+\\[1ex]
+	return $\mathsc{DecideSometimesHalt}(\seq{M'})$\-
+\end{algo}
+We prove this reduction correct as follows:
+
+\begin{itemize}
+\item[$\Longrightarrow$]
+Suppose $M$ halts on input $w$.\\
+Then $M'$ halts on \emph{every} input string $x$.\\
+So \mathsc{DecideSometimesHalt} must accept the encoding $\seq{M’}$.\\
+We conclude that \mathsc{DecideHalt} correctly accepts the encoding $\seq{M, w}$.
+
+\item[$\Longleftarrow$]
+Suppose $M$ does not halt on input $w$.\\
+Then $M'$ diverges on \emph{every} input string $x$.\\
+So \mathsc{DecideSometimesHalt} must reject the encoding $\seq{M’}$.\\
+We conclude that \mathsc{DecideHalt} correctly rejects the encoding $\seq{M, w}$.
+\end{itemize} 
+\end{Solution}
+
+\end{enumerate}
+\end{document}
+
