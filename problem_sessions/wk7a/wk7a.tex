@@ -32,11 +32,15 @@ For each of the following languages over the alphabet $\Sigma = \{\Sym0, \Sym1\}
     \item $\{\Sym0^a\Sym1^b\Sym0^{ab} : a,b \geq 1\}$
 \end{enumerate}
 
-\item Say that a \EMPH{write-twice Turing machine} is a single-tape Turing machine that can alter
-each tape square at most twice (including the input portion of the tape). Show that this variant of a Turing machine model is equivalent to the ordinary Turing machine model
-by describing how to simulate this behavior with a standard Turing machine.
+\item Say that a \EMPH{write-twice Turing machine} is a single-tape Turing
+machine that can alter each tape square at most twice (including the input
+portion of the tape). Show that this variant of a Turing machine model is
+equivalent to the ordinary Turing machine model by describing how to simulate
+a standard Turing machine with this machine.
+
 \item Say that a \EMPH{write-once Turing machine} is a single-tape Turing machine that can alter
 each tape square at most once (including the input portion of the tape). Show that this variant of a Turing machine model is equivalent to the ordinary Turing machine model.
+
 \item A \EMPH{Turing machine with left reset} is similar to an ordinary Turing
 machine, but the transition function has the form $\delta: Q \times \Gamma \to Q
 \times \Gamma \times \{R, RESET\}$. If $\delta(q,a) = (r, b, RESET)$, then when
