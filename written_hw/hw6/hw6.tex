@@ -148,9 +148,7 @@ machines recognize?
 Consider the language $\mathsc{NeverReject} = \{ \langle M \rangle :
 \textsc{Reject}(M) = \emptyset \}$; that is, the set of all (encodings of)
 Turing machines that do not reject any input. 
-\begin{enumerate}
-	\item Prove that $\mathsc{NeverReject}$
-is undecidable via \EMPH{diagonalization}.
+Prove that $\mathsc{NeverReject}$ is undecidable via \EMPH{diagonalization}.
 \begin{Rubric}{Diagnoalization rubric}
 10 points =
 \begin{itemize}
@@ -159,20 +157,6 @@ is undecidable via \EMPH{diagonalization}.
 \end{itemize}
 \end{Rubric}
 
-\item Prove that $\mathsc{NeverReject}$ is undecidable via \EMPH{reduction}
-(for example, from the halting problem).
-
-\begin{Rubric}{Reduction rubric}
-10 points =
-\begin{itemize}
-\item[+ 4] for a correct reduction
-\item[+ 3] for ''if" proof
-\item[+ 3] for ''only if" proof
-\end{itemize}
-\end{Rubric}
-
-
-\end{enumerate}
 \end{enumerate}
 
 
@@ -223,42 +207,6 @@ $\mathsc{Reject}(SH^X) = \emptyset$.  It follows that $SH^X$ accepts $\langle SH
 we have a contradiction.
 \end{Solution}
 
-\item
-Consider the language $\mathsc{SometimesHalt} = \set{ \seq{M} \mid \text{$M$~halts
-on at least one input string}}$.  Note that $\seq{M}\in \mathsc{SometimesHalt}$ does not imply that $M$ \emph{accepts} any strings; it is enough that $M$ \emph{halts} on (and possibly rejects) some string.
-
-Prove that \mathsc{SometimesHalt} is undecidable.
-
-\begin{Solution}
-We can reduce the standard halting problem to \mathsc{Sometimes\-Halt} as follows:
-\begin{algo}
-	\textul{$\mathsc{DecideHalt}(\seq{M, w})$:}\+
-\\	Encode the following Turing machine $M'$:\+
-\\	\color{OliveGreen}
-	\qquad \begin{algorithm}
-		\textul{$M'(x)$:}\+
-	\\		(ignore $x$)
-	\\		run $M$ on input $w$
-	\end{algorithm}
-\\[1ex]
-	return $\mathsc{DecideSometimesHalt}(\seq{M'})$\-
-\end{algo}
-We prove this reduction correct as follows:
-
-\begin{itemize}
-\item[$\Longrightarrow$]
-Suppose $M$ halts on input $w$.\\
-Then $M'$ halts on \emph{every} input string $x$.\\
-So \mathsc{DecideSometimesHalt} must accept the encoding $\seq{M’}$.\\
-We conclude that \mathsc{DecideHalt} correctly accepts the encoding $\seq{M, w}$.
-
-\item[$\Longleftarrow$]
-Suppose $M$ does not halt on input $w$.\\
-Then $M'$ diverges on \emph{every} input string $x$.\\
-So \mathsc{DecideSometimesHalt} must reject the encoding $\seq{M’}$.\\
-We conclude that \mathsc{DecideHalt} correctly rejects the encoding $\seq{M, w}$.
-\end{itemize} 
-\end{Solution}
 
 \end{enumerate}
 \end{document}
