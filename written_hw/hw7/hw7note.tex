@@ -1,0 +1,44 @@
+
+\item Suppose you are given a magic black box that somehow answers the following
+decision problem \emph{in polynomial time}: given positive integers $n$ and $k$,
+does $n$ have a prime factor less than $k$?
+
+Formally, a \EMPH{prime factorization} of a positive integer $n$ is a multiset
+of prime numbers $\{p_1, p_2, \dots, p_m\}$ such that $n = p_1 p_2 \cdots p_m$.
+For example, the prime factorization of $12$ is $\{2, 2, 3\}$, and the prime
+factorization of $13$ is $\{13\}$.
+
+Suppose you are given a magic black box that somehow answers the following
+decision problem \emph{in polynomial time}:
+\begin{itemize}
+\item \mathsc{Input:} Positive integers $n$ and $k$.
+\item \mathsc{Output:} \mathsc{True} if $n$ has a prime factor less than $k$,
+and \mathsc{False} otherwise.
+\end{itemize}
+Using this black box as a subroutine, describe an algorithm that solves the
+following \EMPH{search problem} \emph{in polynomial time}:
+\begin{itemize}
+\item \mathsc{Input:} A positive integer $n$.
+\item \mathsc{Output:} A prime factorization of $n$ (i.e., a multiset of prime
+numbers $\{p_1, p_2, \dots, p_m\}$ such that $n = p_1 p_2 \cdots p_m$).
+\end{itemize}
+\Hint{You can use the magic box more than once.  The input to the magic box is a pair of positive integers $(n, k)$.}
+
+\emph{Unlike in the problem session solutions}, you do not need to argue the
+correctness of your algorithms. But you still do need to argue that they run in
+polynomial time.
+
+\begin{Solution}
+We can find the prime factorization of $n$ using the following algorithm:
+\begin{algo}
+\textul{$\mathsc{FindPrimeFactors}(n)$:}\+
+\\	$P \gets \emptyset$ \quad\text{(the multiset of prime factors found so far)}\+
+\\	$k \gets 2$\+
+\\	\textul{while} $n > 1$ \textul{do}\+
+\\		\textul{if} $\mathsc{DecideHasSmallPrimeFactor}(n, k)$ \textul{then}\+
+\\			$P \gets P \cup \{k\}$\+
+\\			$n \gets n / k$\-
+\\		\textul{else}\+
+\\			$k \gets k + 1$\-
+\end{algo}
+\end{Solution}
