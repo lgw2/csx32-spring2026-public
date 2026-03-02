@@ -1,0 +1,250 @@
+% ---------
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage{fourier-orns}
+\usepackage{mathtools}
+\usepackage[normalem]{ulem} % either use this (simple) or
+\usepackage{tikz}
+
+
+\def\Sym#1{\texttt{\color{BrickRed}#1}}
+\allowdisplaybreaks
+
+\begin{document}
+
+\begin{center}
+\Large\textbf{CSCI 432/532, Spring 2026}%
+\\
+\LARGE\textbf{Homework 7}%
+\\[0.5ex]
+\large Due Monday, March 9 at 8:30am
+\end{center}
+
+\bigskip
+\hrule
+\bigskip
+
+\subsection*{Submission Requirements}
+\begin{itemize}
+    \item Type or clearly hand-write your solutions into a PDF format so that they are legible and professional. Submit your PDF on Canvas or Gradescope. 
+	\item Put each \textbf{sub}problem on a separate page and select the corresponding problem via the Gradescope interface.
+    \item Do not submit your first draft. Type or clearly re-write your solutions for your final submission. If your submission is not legible, we will ask you to resubmit.
+\end{itemize}
+
+\subsection*{Collaboration and Resources}
+
+The \emph{best} resources for completing the homework are (in no particular order):
+\begin{itemize}
+	\item Your own notes from lectures and problem sessions, and/or lecture recordings.
+	\item The lecture notes linked from the course website for the lecture day.
+	\item The questions channel on Discord.
+	\item Office hours.
+	\item Discussions with classmates.
+\end{itemize}
+You may also access almost any resource in preparing your solution to the
+homework. The exception is that you may not seek answers to the problems on the
+homework directly, such as by pasting them into a GenAI tool, searching for
+solutions on a search engine, looking for them on Chegg or similar websites, or
+asking another person for the solution.
+
+Additionally, you \EMPH{must}
+\begin{itemize}
+    \item Write your solutions in your own words---this means that you should never be \emph{copying}
+    anything of substance from any source, and
+    \item credit every resource you use, including GenAI tools, by providing links or full chat transcripts.
+    If you use the provided LaTeX template, you can use the \texttt{Sources}
+    environment for this. Ask if you need help!
+\end{itemize}
+
+
+\begin{boxquote}{0.9}
+Remember, if you choose to use GenAI tools, not only must you provide a full
+transcript of your conversation (or a link to one), you must also use the
+following prompt (or some variation of it), and provide a full transcript of
+the conversation.
+\end{boxquote}  
+
+Prompt:
+\begin{boxquote}{0.9}
+You are acting as a teaching assistant for an advanced undergraduate/graduate
+algorithms and computer science theory course.
+
+Your role is not to provide full solutions or final answers.
+
+Instead, you should act like we are having a conversation. Ask me a single
+question and let me respond. Avoid asking me many questions at once or giving
+me a lot of information at one time. Guide me using hints, leading questions,
+partial insights, and sanity checks.  Help me debug my own proofs, algorithms,
+or reductions. Do not give a complete solution or full proofs. Be patient with
+me. Don't give me details so that I can move on to the next part of a problem.
+Make sure that I understood before moving on.
+
+The course uses Jeff Erickson's Models of Computation lecture notes, so you should
+guide me to answer problems using the definitions, notation, and style from those notes.
+
+Assume I am a serious student trying to learn, not to shortcut the assignment.
+I am attaching the assignment, so you should refuse to provide a complete solution
+to the problems listed. Of course, you can walk me through the "Solved
+Problems" listed at the end if I ask.
+\end{boxquote}  
+
+\newpage
+%----------------------------------------------------------------------
+
+\headers{CSCI 432/532}{Homework 7 (due March 9)}{Spring 2026}
+
+\begin{enumerate}
+%\parindent 1.5em \itemsep 4ex plus 0.5fil
+
+%----------------------------------------------------------------------
+
+\item 
+Recall the language $\mathsc{NeverReject} = \{ \langle M \rangle :
+\textsc{Reject}(M) = \emptyset \}$ from last homework. 
+ Prove that $\mathsc{NeverReject}$ is undecidable via \EMPH{reduction}.
+
+\item
+Let $\seq{M}$ denote the string encoding of a Turing machine $M$. Recall that if
+$w$ is a string, then $ww$ is a new string that repeats $w$ twice.  Prove that
+the following language is undecidable. 
+\[
+	\mathsc{SelfRepeatAccept} 
+	:=
+	\Setbar{\seq{M}}{\text{$M$ accepts the string $\seq{M} \seq{M}$}}
+\]
+
+\begin{Rubric}{Undecidability proof rubric}~
+
+\begin{itemize}
+
+\item \textbf{Diagonalization}
+\begin{itemize}
+\item[+ 4] for a correct wrapper Turing machine
+\item[+ 6] for self-contradiction proof (= 3 for $\Longleftarrow$ + 3 for $\Longrightarrow$)
+\end{itemize}
+
+\item \textbf{Reduction}
+\begin{itemize}
+\item[+ 4] for a correct reduction
+\item[+ 3] for ''if" proof
+\item[+ 3] for ''only if" proof
+\end{itemize}
+
+\end{itemize}
+\end{Rubric}
+
+\item
+Recall that a \EMPH{vertex cover} of a graph is a set of a vertices that touches every edge of that graph.
+Suppose you are given a magic black box that somehow answers the following decision problem \emph{in polynomial time}:
+\begin{itemize}
+    \item \textsc{Input}: an undirected graph $G$ and a positive integer $k$.
+    \item \textsc{Output}: \textsc{True} if $G$ has a vertex cover of size $k$ and \textsc{False} otherwise.
+\end{itemize}
+
+\begin{enumerate}[(a)]
+    \item Using this black box as a subroutine, describe an algorithm that
+    solves the following \EMPH{optimization problem} \emph{in polynomial time}:
+\begin{itemize}
+    \item \textsc{Input}: an undirected graph $G$.
+    \item \textsc{Output}: the size of the smallest vertex cover of $G$.
+\end{itemize}
+
+\item Using this black box as a subroutine, describe an algorithm that solves
+the following \EMPH{search problem} \emph{in polynomial time}:
+\begin{itemize}
+    \item \textsc{Input}: an undirected graph $G$.
+    \item \textsc{Output}: a vertex cover in $G$ of smallest size.
+\end{itemize}
+\end{enumerate}
+
+\emph{Unlike in the problem session solutions}, you do not need to argue the correctness of your algorithms. But you still do need to argue that they run in polynomial time.
+
+\item
+Formally, a \EMPH{proper coloring} of a graph $G=(V,E)$ is a function $c\colon V \to \set{1,2,\dots,k}$, for some integer $k$, such that $c(u)\ne c(v)$ for all $uv\in E$.  Less formally, a valid coloring assigns each vertex of $G$ a color, such that every edge in $G$ has endpoints with different colors.  The \EMPH{chromatic number} of a graph is the minimum number of colors in a proper coloring of $G$.
+
+Suppose you are given a magic black box that somehow answers the following
+decision problem \emph{in polynomial time}:
+\begin{itemize}
+\item \mathsc{Input:} An undirected graph $G$ and an integer $k$.
+\item \mathsc{Output:} \mathsc{True} if $G$ has a proper coloring with $k$ colors, and \mathsc{False} otherwise.
+\end{itemize}
+Using this black box as a subroutine, describe an algorithm that solves the
+following \EMPH{search problem} \emph{in polynomial time}:
+\begin{itemize}
+\item \mathsc{Input:} An undirected graph $G$.
+\item \mathsc{Output:} A valid coloring of $G$ using the minimum possible number
+of colors.
+\end{itemize}
+\Hint{You can use the magic box more than once.  The input to the magic box is a graph and \textbf{only} a graph, meaning \textbf{only} vertices and edges.}
+
+\emph{Unlike in the problem session solutions}, you do not need to argue the
+correctness of your algorithms. But you still do need to argue that they run in
+polynomial time.
+
+\end{enumerate}
+
+\begin{Rubric}{Basic reduction (algorithms)}
+10 points =
+\begin{itemize}
+\item[+ 4] for calling the magic black box as a subroutine in the algorithm. No points here if it is not called on the correct input data type.
+\item[+ 2] for a correct algorithm.
+\item[+ 2] for an algorithm that runs in polynomial time (assuming the black box runs in polynomial time).
+\item[+ 2] for a valid argument that the algorithm runs in polynomial time.
+\end{itemize}
+\end{Rubric}
+
+
+
+% ===========================================================================
+\newpage
+
+\subsection*{Solved problems}
+
+\begin{enumerate}\parindent 1.5em
+
+\item
+Consider the language $\mathsc{SometimesHalt} = \set{ \seq{M} \mid \text{$M$~halts
+on at least one input string}}$.  Note that $\seq{M}\in \mathsc{SometimesHalt}$ does not imply that $M$ \emph{accepts} any strings; it is enough that $M$ \emph{halts} on (and possibly rejects) some string.
+
+Prove that \mathsc{SometimesHalt} is undecidable.
+
+\begin{Solution}
+We can reduce the standard halting problem to \mathsc{Sometimes\-Halt} as follows:
+\begin{algo}
+	\textul{$\mathsc{DecideHalt}(\seq{M, w})$:}\+
+\\	Encode the following Turing machine $M'$:\+
+\\	\color{OliveGreen}
+	\qquad \begin{algorithm}
+		\textul{$M'(x)$:}\+
+	\\		(ignore $x$)
+	\\		run $M$ on input $w$
+	\end{algorithm}
+\\[1ex]
+	return $\mathsc{DecideSometimesHalt}(\seq{M'})$\-
+\end{algo}
+We prove this reduction correct as follows:
+
+\begin{itemize}
+\item[$\Longrightarrow$]
+Suppose $M$ halts on input $w$.\\
+Then $M'$ halts on \emph{every} input string $x$.\\
+So \mathsc{DecideSometimesHalt} must accept the encoding $\seq{M’}$.\\
+We conclude that \mathsc{DecideHalt} correctly accepts the encoding $\seq{M, w}$.
+
+\item[$\Longleftarrow$]
+Suppose $M$ does not halt on input $w$.\\
+Then $M'$ diverges on \emph{every} input string $x$.\\
+So \mathsc{DecideSometimesHalt} must reject the encoding $\seq{M’}$.\\
+We conclude that \mathsc{DecideHalt} correctly rejects the encoding $\seq{M, w}$.
+\end{itemize} 
+\end{Solution}
+
+\end{enumerate}
+
+\end{document}
+
