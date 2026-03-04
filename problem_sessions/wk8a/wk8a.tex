@@ -1,0 +1,96 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{../../jeffe,../../handout,graphicx}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\color{BrickRed}#1}}
+\def\ForceSym#1{\setbox0\hbox{A}\hbox to \wd0{\hss #1\hss}}
+\def\Blank{\ForceSym{$\square$}}
+
+% =========================================================
+\begin{document}
+
+\headers{CSCI 432/532}{Problem Session 8a}{Spring 2026}
+
+Recall the proof that the halting problem is undecidable:
+
+\begin{Solution}
+   For the sake of contradiction, suppose there is a Turing machine $H$
+   that decides the language \textsc{Halt} = $\{\langle M,w \rangle : M \text{ halts on input } w\}$.
+   Now, we can decide the language \textsc{SelfHalt} = $\{\langle M \rangle : M
+   \text{ halts on input } \langle M \rangle\}$ by running $H$ on input $\langle
+   M, \langle M \rangle \rangle$. We now show that this method decides
+   \textsc{SelfHalt} correctly by showing that it correctly accepts and rejects the appropriate inputs.
+
+   \begin{itemize}
+    \item If $M$ halts on $\langle M \rangle$, then $H$ accepts on input $\langle M, \langle M
+    \rangle \rangle$, and so our method accepts on input $\langle M \rangle$.
+
+    \item If $M$ does not halt on input $\langle M \rangle$, then $H$ rejects on
+    input $\langle M, \langle M \rangle \rangle$, and so our method rejects on
+    input $\langle M \rangle$.
+   \end{itemize}
+
+   
+
+
+
+
+\end{Solution}
+
+\begin{enumerate}
+    \item Below is the start of a proof that the language
+$\mathsc{AcceptGriz} := \Setbar{\seq{M}\strut}{\text{$M$ accepts the string \Sym{GRIZ}}}$ is undecidable.
+
+\begin{Solution}
+For the sake of argument, suppose there is an algorithm \textsc{Decide\-Accept\-Griz} that correctly decides the language \mathsc{AcceptGriz}.  Then we can solve the halting problem as follows:
+\begin{algo}
+	\textul{$\mathsc{DecideHalt}(\seq{M, w})$:}\+
+\\	Encode the following Turing machine $M’$:\+\+\+
+\\	\qquad\color{OliveGreen}
+	\begin{algorithm}
+		\textul{$M’(x)$:}\+
+	\\		\Comment{ignore the input string $x$}
+	\\		run $M$ on input $w$
+	\\		\Comment{ignore the output of $M$}
+	\\		return \mathsc{True}
+	\end{algorithm}
+\\[1ex]
+	if $\mathsc{DecideAcceptGriz}(\seq{M’})$\+
+\\		return \mathsc{True}\-
+\\	else\+
+\\		return \mathsc{False}
+\end{algo}
+
+\end{Solution}
+
+\begin{enumerate}
+\item List the four distinct Turing machines that are at play in this reduction and describe their role.
+
+        
+\item Prove that this reduction is correct by proving both 
+    \begin{itemize}
+        \item if $M$ halts on input $w$, then \textsc{DecideHalt} accepts on $(\seq{M, w})$, and
+        \item if \textsc{DecideHalt} accepts on $(\seq{M, w})$, then $M$ halts
+        on input $w$. (Why is this a valid way to prove the correctness of the
+        reduction?)
+    \end{itemize}
+
+\end{enumerate}
+
+\item Prove that each of the following languages is undecidable. For each proof,
+list \emph{all} the Turing machines that are at play in the reduction and describe their role.
+To complete the proof, you must also prove the correctness of the reduction by
+proving that the TM you constructed to decide an undecidable language correctly
+decides that language.
+
+\begin{enumerate}
+    \item $\mathsc{Accept} = \{\langle M,w \rangle:$ $M$ accepts $w$$\}$
+    \item $\mathsc{AlwaysReject} = \{\langle M \rangle: \mathsc{Reject}(M) = \Sigma^*\}$
+\end{enumerate}
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%
+\end{document}
