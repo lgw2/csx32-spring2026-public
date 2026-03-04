@@ -107,11 +107,16 @@ Problems" listed at the end if I ask.
 Recall the language $\mathsc{NeverReject} = \{ \langle M \rangle :
 \textsc{Reject}(M) = \emptyset \}$ from last homework. 
  Prove that $\mathsc{NeverReject}$ is undecidable via \EMPH{reduction}.
+ Your proof must show that your reduction gives the correct answer for all inputs to the problem you are reducing from.
+ You must also list all Turing machines in your reduction and give a short description of their role in the reduction (as in the problem session examples).
 
 \item
 Let $\seq{M}$ denote the string encoding of a Turing machine $M$. Recall that if
 $w$ is a string, then $ww$ is a new string that repeats $w$ twice.  Prove that
-the following language is undecidable. 
+the following language is undecidable via \EMPH{reduction}. 
+ Your proof must show that your reduction gives the correct answer for all inputs to the problem you are reducing from.
+ You must also list all Turing machines in your reduction and give a short description of their role in the reduction (as in the problem session examples).
+
 \[
 	\mathsc{SelfRepeatAccept} 
 	:=
@@ -122,15 +127,10 @@ the following language is undecidable.
 
 \begin{itemize}
 
-\item \textbf{Diagonalization}
-\begin{itemize}
-\item[+ 4] for a correct wrapper Turing machine
-\item[+ 6] for self-contradiction proof (= 3 for $\Longleftarrow$ + 3 for $\Longrightarrow$)
-\end{itemize}
-
 \item \textbf{Reduction}
 \begin{itemize}
-\item[+ 4] for a correct reduction
+\item[+ 3] for a correct reduction
+\item[+1] for a correct list of the Turing machines used in the reduction, and a short description of their role in the reduction
 \item[+ 3] for ''if" proof
 \item[+ 3] for ''only if" proof
 \end{itemize}
