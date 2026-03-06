@@ -86,23 +86,6 @@ Using this black box as a subroutine, describe algorithms that solves the follow
 
 %----------------------------------------------------------------------
 \item
-Formally, a \EMPH{proper coloring} of a graph $G=(V,E)$ is a function $c\colon V \to \set{1,2,\dots,k}$, for some integer $k$, such that $c(u)\ne c(v)$ for all $uv\in E$.  Less formally, a valid coloring assigns each vertex of $G$ a color, such that every edge in $G$ has endpoints with different colors.  The \EMPH{chromatic number} of a graph is the minimum number of colors in a proper coloring of $G$.
-
-Suppose you are given a magic black box that somehow answers the following decision problem \emph{in polynomial time}:
-\begin{itemize}
-\item \mathsc{Input:} An undirected graph $G$ and an integer $k$.
-\item \mathsc{Output:} \mathsc{True} if $G$ has a proper coloring with $k$ colors, and \mathsc{False} otherwise.\footnote{Again, it is not hard to solve this problem in polynomial time via dynamic programming when the input graph $G$ is a \emph{tree}, but this magic box works for \emph{every} input graph.}
-\end{itemize}
-Using this black box as a subroutine, describe an algorithm that solves the following \EMPH{coloring problem} \emph{in polynomial time}:
-\begin{itemize}
-\item \mathsc{Input:} An undirected graph $G$.
-\item \mathsc{Output:} A valid coloring of $G$ using the minimum possible number of colors.
-\end{itemize}
-\Hint{You can use the magic box more than once.  The input to the magic box is a graph and \textbf{only} a graph, meaning \textbf{only} vertices and edges.}
-
-
-%----------------------------------------------------------------------
-\item
 Suppose you are given a magic black box that somehow answers the following decision problem in \emph{polynomial time}:
 \begin{itemize}
 \item
