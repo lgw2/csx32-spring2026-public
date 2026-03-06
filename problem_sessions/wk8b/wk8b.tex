@@ -1,0 +1,125 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\textbf{\texttt{\color{BrickRed}#1}}}
+
+\newcommand{\X}[1]{\textcolor{Red}{\mathbf{\underline{#1}}}}
+
+\hidesolutions
+
+% =========================================================
+\begin{document}
+
+\headers{CS/ECE 374 A}{Lab 12a — November 8}{Fall 2023}
+
+\begin{enumerate}
+\parindent 1.5em \itemsep 4ex
+
+%----------------------------------------------------------------------
+\item
+Suppose you are given a magic black box that somehow answers the following decision problem \emph{in polynomial time}:
+\begin{itemize}\cramped
+\item \mathsc{Input:} A directed graph $G$ and a positive integer $L$.  (The edges of $G$ are not weighted, and $G$ is not necessarily a dag.)
+\item \mathsc{Output:} \mathsc{True} if $G$ contains a (simple) path of length $L$, and \mathsc{False} otherwise.\footnote{You already know how to solve this problem in polynomial time \emph{when the input graph $G$ is a dag}, but this magic box works for \emph{every} input graph.}
+\end{itemize}
+
+\begin{enumerate}\itemsep 2ex
+\item
+Using this black box as a subroutine, describe algorithms that solves the following optimization problem \emph{in polynomial time}:
+\begin{itemize}
+\item \mathsc{Input:} A directed graph $G$.
+\item \mathsc{Output:} The length of the longest path in $G$.
+\end{itemize}
+
+\item
+Using this black box as a subroutine, describe algorithms that solves the following search problem \emph{in polynomial time}:
+\begin{itemize}
+\item \mathsc{Input:} A directed graph $G$.
+\item \mathsc{Output:} The longest path in $G$
+\end{itemize}
+\end{enumerate}
+\Hint{You can use the magic box more than once.}
+
+
+%----------------------------------------------------------------------
+\item
+An \EMPH{independent set} in a graph $G$ is a subset $S$ of the vertices of $G$, such that no two vertices in $S$ are connected by an edge in $G$.  Suppose you are given a magic black box that somehow answers the following decision problem \emph{in polynomial time}:
+\begin{itemize}\cramped
+\item \mathsc{Input:} An undirected graph $G$ and an integer $k$.
+\item \mathsc{Output:} \mathsc{True} if $G$ has an independent set of size $k$, and \mathsc{False} otherwise.\footnote{It is not hard to solve this problem in polynomial time via dynamic programming when the input graph $G$ is a \emph{tree}, but this magic box works for \emph{every} input graph.}
+\end{itemize}
+
+\begin{enumerate}\itemsep 2ex
+\item
+Using this black box as a subroutine, describe algorithms that solves the following optimization problem \emph{in polynomial time}:
+\begin{itemize}
+\item \mathsc{Input:} An undirected graph $G$.
+\item \mathsc{Output:} The size of the largest independent set in $G$.
+\end{itemize}
+% \Hint{You’ve seen this problem before.}
+
+\item
+Using this black box as a subroutine, describe algorithms that solves the following search problem \emph{in polynomial time}:
+\begin{itemize}
+\item \mathsc{Input:} An undirected graph $G$.
+\item \mathsc{Output:} An independent set in $G$ of maximum size.
+\end{itemize}
+\end{enumerate}
+\Hint{You can use the magic box more than once.}
+
+
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\newpage
+
+\noindent
+\textbf{To think about later:}
+
+\begin{enumerate}\parindent 1.5em\itemsep4ex
+\setcounter{enumi}{2}
+
+%----------------------------------------------------------------------
+\item
+Formally, a \EMPH{proper coloring} of a graph $G=(V,E)$ is a function $c\colon V \to \set{1,2,\dots,k}$, for some integer $k$, such that $c(u)\ne c(v)$ for all $uv\in E$.  Less formally, a valid coloring assigns each vertex of $G$ a color, such that every edge in $G$ has endpoints with different colors.  The \EMPH{chromatic number} of a graph is the minimum number of colors in a proper coloring of $G$.
+
+Suppose you are given a magic black box that somehow answers the following decision problem \emph{in polynomial time}:
+\begin{itemize}
+\item \mathsc{Input:} An undirected graph $G$ and an integer $k$.
+\item \mathsc{Output:} \mathsc{True} if $G$ has a proper coloring with $k$ colors, and \mathsc{False} otherwise.\footnote{Again, it is not hard to solve this problem in polynomial time via dynamic programming when the input graph $G$ is a \emph{tree}, but this magic box works for \emph{every} input graph.}
+\end{itemize}
+Using this black box as a subroutine, describe an algorithm that solves the following \EMPH{coloring problem} \emph{in polynomial time}:
+\begin{itemize}
+\item \mathsc{Input:} An undirected graph $G$.
+\item \mathsc{Output:} A valid coloring of $G$ using the minimum possible number of colors.
+\end{itemize}
+\Hint{You can use the magic box more than once.  The input to the magic box is a graph and \textbf{only} a graph, meaning \textbf{only} vertices and edges.}
+
+
+%----------------------------------------------------------------------
+\item
+Suppose you are given a magic black box that somehow answers the following decision problem in \emph{polynomial time}:
+\begin{itemize}
+\item
+\mathsc{Input:} A boolean circuit $K$ with $n$ inputs and one output.
+\item
+\mathsc{Output:} \mathsc{True} if there are input values $x_1, x_2, \dots, x_n \in \set{\mathsc{True},\mathsc{False}}$ that make $K$ output \mathsc{True}, and \mathsc{False} otherwise.
+\end{itemize}
+Using this black box as a subroutine, describe an algorithm that solves the following related search problem \emph{in polynomial time}:
+\begin{itemize}
+\item \mathsc{Input:} A boolean circuit $K$ with $n$ inputs and one output.
+\item \mathsc{Output:} Input values $x_1, x_2, \dots, x_n \in \set{\mathsc{True},\mathsc{False}}$ that make $K$ output \mathsc{True}, or \mathsc{None} if there are no such inputs.
+\end{itemize}
+\Hint{You can use the magic box more than once.}
+
+
+\end{enumerate}
+
+
+
+\end{document}
