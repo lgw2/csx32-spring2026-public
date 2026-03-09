@@ -1,0 +1,35 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\textbf{\texttt{\color{BrickRed}#1}}}
+
+\newcommand{\X}[1]{\textcolor{Red}{\mathbf{\underline{#1}}}}
+
+\hidesolutions
+
+% =========================================================
+\begin{document}
+
+\headers{CSCI 432/532}{Problem Session 9b}{Spring 2026}
+
+\noindent
+Prove that each of the following problems is {NP}-hard.
+
+\begin{enumerate}\itemsep 2ex
+\item
+Given an undirected graph $G$, does $G$ contain a simple path that visits all but 374 vertices?
+
+\item
+Given an undirected graph $G$, does $G$ have a spanning tree in which every vertex has degree at most 374?
+
+\item
+Given an undirected graph $G$, does $G$ have a spanning tree with at most 374 leaves?
+\end{enumerate}
+%
+\Hint{Consider the corresponding problems with 1 or 2 in place of 374.} 
+\end{document}
