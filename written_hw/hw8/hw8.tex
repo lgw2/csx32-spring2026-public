@@ -101,10 +101,45 @@ Problems" listed at the end if I ask.
 \noindent \Hint{Make sure you understand the definitions of the problems you are trying to prove NP- hard.
 Only a small amount of partial credit will be given for submissions that do not address the correct
 computational problems.}
-\begin{enumerate}
-%\parindent 1.5em \itemsep 4ex plus 0.5fil
+
+Rubric for both of the following:
+
+\begin{Rubric}{Standard NP-hardness rubric}~
+10 points = 
+\begin{itemize}
+\item[+]
+1 point for choosing a reasonable NP-hard problem X to reduce from.
+\begin{itemize}\cramped
+\item
+The Cook-Levin theorem implies that \emph{in principle} one can prove NP-hardness by reduction from \emph{any} NP-complete problem.  What we’re looking for here is a problem where a simple and direct NP-hardness proof seems likely.
+\item
+You can use any of the NP-hard problems listed in the lecture notes (except the one you are trying to prove NP-hard, of course).
+\end{itemize}
+
+\item[+]
+2 points for a \emph{structurally sound} polynomial-time reduction.  Specifically, the reduction must:
+\begin{itemize}\cramped
+\item take an \emph{arbitrary} instance of the declared problem X \EMPH{and nothing else} as input,
+\item transform that input into a corresponding instance of Y (the problem we’re trying to prove NP-hard), 
+\item transform the output of the oracle for Y into a reasonable output for X, and
+\item run in polynomial time.
+\end{itemize}
+(The output transformation is usually trivial.)  This is strictly about the structure of the reduction algorithm, not about its correctness.  No credit for the rest of the problem if this is wrong.
+
+\item[+] 2 points for a \emph{correct} polynomial-time reduction.  That is, assuming a black-box algorithm that solves Y in polynomial time, the proposed reduction actually solves problem X in polynomial time.
+\item[+] 2 points for the “if” proof of correctness.  (Every good instance of X is transformed into a good instance of Y.)
+\item[+] 2 points for the “only if” proof of correctness.  (Every bad instance of X is transformed into a bad instance of Y.)
+\item[+] 1 point for writing “polynomial time”
+\medskip
+\item
+An incorrect but structurally sound polynomial-time reduction that still satisfies half of the correctness proof is worth at most 5/10 (= 1 for reasonable reduction source + 2 for structural soundness + 2 for half of the proof)
+\item
+A reduction in the wrong direction is worth at most 1/10 (for choosing a reasonable problem)
+\end{itemize}
+\end{Rubric}
 
 %----------------------------------------------------------------------
+\begin{enumerate}
 
 
 \item
@@ -122,6 +157,8 @@ Prove that it is NP-hard to find the size of the the largest lollipop subgraph o
 
 
 %----------------------------------------------------------------------
+
+
 \item
 Recall that a \emph{3-coloring} of a graph assigns each vertex one of three colors, say red, yellow, and blue.  A 3-coloring is \emph{proper} if every edge has endpoints with different colors.  The \textsc{3Color} problem asks, given an arbitrary undirected graph $G$, whether $G$ has a proper 3-coloring.
 
