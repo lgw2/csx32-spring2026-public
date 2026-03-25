@@ -98,7 +98,7 @@ Problems" listed at the end if I ask.
 
 \headers{CSCI 432/532}{Homework 8 (due March 16)}{Spring 2026}
 
-\noindent \Hint{Make sure you understand the definitions of the problems you are trying to prove NP- hard.
+\noindent \Hint{Make sure you understand the definitions of the problems you are trying to prove NP-hard.
 Only a small amount of partial credit will be given for submissions that do not address the correct
 computational problems.}
 
@@ -205,7 +205,9 @@ neighbors with the same color.
 Describe a graph $G$ that does not have a proper 3-coloring, such that the graph $H$ constructed by this reduction does have an almost 3-coloring.
 
 \item
-Describe a small graph $X$ with the following property: In every almost 3-coloring of $X$, every vertex of $X$ has \emph{exactly} one neighbor with the same color.
+Describe a small graph $X$ with the following property: In every almost 3-coloring of $X$, every vertex of $X$ has \emph{exactly} one neighbor with the same color. [Hint: make sure you
+understand what this problem is asking for. You need to ask yourself: for \emph{every possible} almost 3-coloring of $X$, does every vertex have exactly one neighbor with the same color?
+It is not sufficient for \emph{some} almost 3-coloring of $X$ to have this property.]
 
 \item
 Describe a correct polynomial-time reduction from \textsc{3Color} to \textsc{Almost\-3Color}.  \Hint{Use your graph from part (b) as a gadget.}  This reduction will prove that \textsc{Almost3Color} is indeed NP-hard.
