@@ -20,11 +20,55 @@
 \noindent
 
 \begin{enumerate}\itemsep3ex\parindent1.5em
+\item    Given the polynomial
+	\[A(x) = 2 + 7x + 1x^2 + 8x^3\]
 
-    \item
-
-Choose two polynomials $A(x)$ and $B(x)$of degree three (i.e., largest term is cubic) and trace through the FFT algorithm
-to compute the product of the two polynomials, $C(x)$.
+\begin{enumerate}
+	\item Compute $DFT(A)$ directly by substituting the sample points into the polynomial.
+    (You could multiply $V \cdot A$ if you want.)
+    \item Compute $DFT(A)$ using the FFT algorithm. You should evaluate all
+    recursive calls through the base case (i.e., when the input is a single
+    coefficient).
 \end{enumerate}
+
+\item The \emph{convolution} of two vectors $A$ and $B$ of length $n$ is the
+vector $A*B$ of length $n$ defined by
+\[(A*B)[k] = \sum_{i,j: i+j=k} A[i] \cdot B[j]\]
+for all $k=0,1,\ldots,n-1$.
+
+\begin{enumerate}
+    \item Compute the convolution of $A$ (the coefficient vector from above) and $B=(3,1,4,2)$ directly.
+
+    \item Compute $A(x) \cdot B(x)$. What do you notice about the coefficients of $A(x) \cdot B(x)$ and the convolution $A*B$?
+
+    \item Give an algorithm to compute in $A*B$ in $O(n \log n)$ time.
+\end{enumerate}
+
+\item Suppose you are given an array $A$ of $n$ positive integers. An interval in $A$ is a contiguous
+subarray $A[i..j]$ for some pair of indices $0 \leq i \leq j < n$. Suppose we compute the sum of
+elements in each of the $\Theta(n^2)$ intervals in $A$; some of these sums might coincide. This
+question asks you to design and analyze efficient algorithms to compute the number of
+distinct interval sums in $A$.
+\begin{enumerate}
+    \item 
+Describe an algorithm that runs in $O(n^2 \log n)$ time.
+\item Describe an algorithm that runs in $O(M \log M)$ time, where $M = \sum_{i} A[i]$.
+ 
+\end{enumerate}
+
+For example, given the input array $A = (8, 2, 3, 5)$, your algorithms should return $7$, because
+$A$ has seven distinct interval sums: $2, 3, 5, 8, 10, 13$, and $18$. For example, $A$ contains two
+intervals $(8, 2)$ and $(2, 3, 5)$ that both sum to 10.
+\end{enumerate}
+
+
+\end{document}
+i A[i].
+[Hint: Use FFTs.]
+For example, given the input array A = [8, 2, 3, 5], your algorithms should return 7, because
+A has seven distinct interval sums: 2, 3, 5, 8, 10, 13, and 18. For example, A contains two
+intervals [8, 2] and [2, 3, 5] that both sum to 10
+\end{enumerate}
+
 
 \end{document}
