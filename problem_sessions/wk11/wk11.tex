@@ -1,0 +1,62 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\textbf{\texttt{\color{BrickRed}#1}}}
+
+\newcommand{\X}[1]{\textcolor{Red}{\mathbf{\underline{#1}}}}
+
+\hidesolutions
+
+% =========================================================
+\begin{document}
+
+\headers{CSCI 432/532}{Problem Session 11}{Spring 2026}
+
+\noindent
+Some of the problems below ask you to convert between characters and their ASCII values. Here's a table to help.
+
+    \begin{table}[h]
+\centering
+\begin{tabular}{c c c c}
+\textbf{Char} & \textbf{Binary} & \textbf{Char} & \textbf{Binary} \\
+\hline
+a & 01100001 & n & 01101110 \\
+b & 01100010 & o & 01101111 \\
+c & 01100011 & p & 01110000 \\
+d & 01100100 & q & 01110001 \\
+e & 01100101 & r & 01110010 \\
+f & 01100110 & s & 01110011 \\
+g & 01100111 & t & 01110100 \\
+h & 01101000 & u & 01110101 \\
+i & 01101001 & v & 01110110 \\
+j & 01101010 & w & 01110111 \\
+k & 01101011 & x & 01111000 \\
+l & 01101100 & y & 01111001 \\
+m & 01101101 & z & 01111010 \\
+\end{tabular}
+\caption{Lowercase ASCII Binary Mapping}
+\end{table}
+\begin{enumerate}\itemsep3ex\parindent1.5em
+\item The OTP encryption of the string \Sym{hi} is \Sym{11001100110001110}. 
+What is the encryption of the string \Sym{um} using the same OTP key?
+\item Your colleague has written some software to perform OTP encryption.
+It matches what we saw in class, with one exception: instead of XORing the
+plaintext and key, it performs unsigned 64-bit addition. (That is, the binary
+strings are interpreted as positive binary integers, and the $Enc$ algorithm
+adds the plaintext and key together, modulo $2^{64}$.)
+\begin{enumerate}
+    \item What should your colleague's decryption algorithm be to satisfy
+    the correctness property of OTP encryption?
+    \item Does your colleague's scheme satisfy the security property of OTP
+    encryption?
+    \item Another colleague comes along and suggests you use unsigned 64-bit
+    multiplication instead of addition. Is this a valid encryption scheme?
+\end{enumerate}
+\end{enumerate}
+\end{document}
+
