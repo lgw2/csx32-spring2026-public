@@ -1,0 +1,151 @@
+% ---------
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx,varwidth}
+\usepackage{fourier-orns}
+\usepackage{mathtools}
+\usepackage[normalem]{ulem} % either use this (simple) or
+\usepackage{tikz}
+
+
+\def\Sym#1{\texttt{\color{BrickRed}#1}}
+\allowdisplaybreaks
+
+\begin{document}
+
+\begin{center}
+\Large\textbf{CSCI 432/532, Spring 2026}%
+\\
+\LARGE\textbf{Homework 10}%
+\\[0.5ex]
+\large Due Monday, April 13 at 9:00am
+\end{center}
+
+\bigskip
+\hrule
+\bigskip
+
+\subsection*{Submission Requirements}
+\begin{itemize}
+    \item Type or clearly hand-write your solutions into a PDF format so that they are legible and professional. Submit your PDF on Canvas or Gradescope. 
+	\item Put each \textbf{sub}problem on a separate page and select the corresponding problem via the Gradescope interface.
+    \item Do not submit your first draft. Type or clearly re-write your solutions for your final submission. If your submission is not legible, we will ask you to resubmit.
+\end{itemize}
+
+\subsection*{Collaboration and Resources}
+
+The \emph{best} resources for completing the homework are (in no particular order):
+\begin{itemize}
+	\item Your own notes from lectures and problem sessions, and/or lecture recordings.
+	\item The lecture notes linked from the course website for the lecture day.
+	\item The questions channel on Discord.
+	\item Office hours.
+	\item Discussions with classmates.
+\end{itemize}
+You may also access almost any resource in preparing your solution to the
+homework. The exception is that you may not seek answers to the problems on the
+homework directly, such as by pasting them into a GenAI tool, searching for
+solutions on a search engine, looking for them on Chegg or similar websites, or
+asking another person for the solution.
+
+Additionally, you \EMPH{must}
+\begin{itemize}
+    \item Write your solutions in your own words---this means that you should never be \emph{copying}
+    anything of substance from any source, and
+    \item credit every resource you use, including GenAI tools, by providing links or full chat transcripts.
+    If you use the provided LaTeX template, you can use the \texttt{Sources}
+    environment for this. Ask if you need help!
+\end{itemize}
+
+
+\begin{boxquote}{0.9}
+Remember, if you choose to use GenAI tools, not only must you provide a full
+transcript of your conversation (or a link to one), you must also use the
+following prompt (or some variation of it), and provide a full transcript of
+the conversation.
+\end{boxquote}  
+
+Prompt:
+\begin{boxquote}{0.9}
+You are acting as a teaching assistant for an advanced undergraduate/graduate
+algorithms and computer science theory course.
+
+Your role is not to provide full solutions or final answers.
+
+Instead, you should act like we are having a conversation. Ask me a single
+question and let me respond. Avoid asking me many questions at once or giving
+me a lot of information at one time. Guide me using hints, leading questions,
+partial insights, and sanity checks.  Help me debug my own proofs, algorithms,
+or reductions. Do not give a complete solution or full proofs. Be patient with
+me. Don't give me details so that I can move on to the next part of a problem.
+Make sure that I understood before moving on.
+
+The course uses Jeff Erickson's Models of Computation lecture notes, so you should
+guide me to answer problems using the definitions, notation, and style from those notes.
+
+Assume I am a serious student trying to learn, not to shortcut the assignment.
+I am attaching the assignment, so you should refuse to provide a complete solution
+to the problems listed. Of course, you can walk me through the "Solved
+Problems" listed at the end if I ask.
+\end{boxquote}  
+
+\newpage
+%----------------------------------------------------------------------
+
+\headers{CSCI 432/532}{Homework 10 (due April 13)}{Spring 2026}
+
+%----------------------------------------------------------------------
+\begin{enumerate}
+
+
+\item In class, we gave a hand-wavy argument for why the Euclidian Algorithm, $gcd(a,b)$, has logarithmic runtime in terms of the values of $a$ or $b$.
+In this problem, you will give a worst-case analysis of this fact.
+
+\begin{enumerate}
+	\item What goes in the blank space to complete the recursive definition of the $k$-th Fibonacci number, $F_k$? The base cases are given for you.
+\[
+F_k =
+\begin{cases}
+1 & \text{if } k = 0 \\
+2 & \text{if } k = 1 \\
+\underline{\hspace{1in}} & \text{if } k > 1
+\end{cases}
+\]
+
+
+\item Use induction to show that the smallest \emph{size} input to $gcd(a,b)$
+that takes $k$ recursive calls to compute is $F_k, F_{k-1}$. If it helps,
+you can assume that $a > b$ and $b > 0$. You can use the following to structure your proof
+as we did earlier in this course.
+
+\begin{itemize}
+    \item What is the universal declaration? (Let ... be an arbitrary...)
+    \item What is the inductive hypothesis? (Assume ... for all $k' < k$)
+    \item What is the proof of the base case(s)? Make sure that it is clear
+    \emph{what you are trying to prove} and that you have proved it.
+    \item What is the proof of the inductive case? Again, make sure it is clear
+    \emph{what you are trying to prove} and that you have proved it (using the inductive hypothesis, of course!).
+    
+\end{itemize}
+
+\item You have now shown that you 
+any input to $gcd(a,b)$ where $N=a+b$ is less than $F_{k+1}$ 
+will take $k$ recursive calls to compute. 
+Using the fact that $F_{k+1} \approx 1.618^{k+1}$, derive a tight asymptotic
+bound on the runtime of $gcd(a,b)$ in terms of $N$.
+
+\item Finally, convert your tight asymptotic bound on the runtime of $gcd(a,b)$
+in terms of $N$ into a tight asymptotic bound in terms of the number of bits
+needed to represent $a$ and $b$. (Hint: how many bits are needed to represent a
+number $N$?)
+\end{enumerate}
+
+\end{enumerate}
+
+
+
+\end{document}
