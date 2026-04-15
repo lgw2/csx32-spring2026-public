@@ -102,7 +102,7 @@ Problems" listed at the end if I ask.
 \begin{enumerate}
 
 
-\item In class, we gave a hand-wavy argument for why the Euclidian Algorithm, $gcd(a,b)$, has logarithmic runtime in terms of the values of $a$ or $b$.
+\item In class, we gave a hand-wavy argument for why the Euclidean Algorithm, $gcd(a,b)$, has logarithmic runtime in terms of the values of $a$ or $b$.
 In this problem, you will give a worst-case analysis of this fact.
 
 \begin{enumerate}
@@ -117,18 +117,18 @@ F_k =
 \]
 
 
-\item Use induction to show that the smallest \emph{size} input to $gcd(a,b)$
+\item Use induction on $k$ to show that the smallest \emph{size} input to $gcd(a,b)$
 that takes $k$ recursive calls to compute is $F_k, F_{k-1}$. If it helps,
 you can assume that $a > b$ and $b > 0$. You can use the following to structure your proof
 as we did earlier in this course.
 
 \begin{itemize}
     \item What is the universal declaration? (Let ... be an arbitrary...)
-    \item What is the inductive hypothesis? (Assume ... for all $k' < k$)
+    \item What is the induction hypothesis? (Assume ... for all $k' < k$)
     \item What is the proof of the base case(s)? Make sure that it is clear
     \emph{what you are trying to prove} and that you have proved it.
     \item What is the proof of the inductive case? Again, make sure it is clear
-    \emph{what you are trying to prove} and that you have proved it (using the inductive hypothesis, of course!).
+    \emph{what you are trying to prove} and that you have proved it (using the induction hypothesis, of course!).
     
 \end{itemize}
 
