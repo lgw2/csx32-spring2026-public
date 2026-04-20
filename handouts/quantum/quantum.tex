@@ -1,0 +1,61 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX spellcheck = English (Aspell)
+
+\documentclass[11pt]{article}
+\usepackage{../../jeffe,../../handout,graphicx}
+\usepackage{braket}
+
+
+% =========================================================
+\begin{document}
+
+Last class, we learned that quantum operations must satisfy
+the following properties:
+\begin{itemize}
+    \item \textbf{Unitary}: Given a superposition of $n$ qubits 
+    \[\ket{\psi} = \sum_{x \in \{0,1\}^n} \alpha_x \ket{x},\]
+    where $\alpha_x$ is the amplitude of the basic state $\ket{x}$
+    so that $\sum_{x \in \{0,1\}^n} \alpha_x^2 = 1$, a quantum operation $U$ must be unitary,
+    meaning that after applying $U$ to $\ket{\psi}$, it is still true that $\sum_{x \in \{0,1\}^n} \alpha_x^2 = 1$.
+    \item \textbf{Reversible}: A quantum operation $U$ must be reversible,
+    meaning that there must exist some quantum operation $U^{-1}$ such that
+    applying $U$ and then $U^{-1}$ to any superposition of $n$ qubits
+    $\ket{\psi}$ results in the original state $\ket{\psi}$.
+\end{itemize}
+
+For the following operations, either give their reversal operations or indicate that
+they are not reversible. We use capital letters to denote individual qubits; for example,
+if we have two qubits, we refer to the first qubit as $A$ and the second qubit as $B$.
+
+\begin{table}[h]
+\begin{tabular}{c|c|c}
+    Operation $U$ & Reversal Operation $U^{-1}$ & Minimal example\\
+    \hline
+    $\neg A$ & $\neg A$ & $\ket{0} \to \ket{1} \to \ket{0}$ \\
+     &  & $\ket{1} \to \ket{0} \to \ket{1}$ \\
+    if $A$ then $\neg$ B &   \\
+    & & \\
+    & & \\
+    & & \\
+    & & \\
+    & & \\
+    & & \\
+    $A \oplus B$ &   \\
+    & & \\
+    & & \\
+    & & \\
+    & & \\
+    & & \\
+    & & \\
+    Hadamard $A$, defined as: & & \\
+    $\ket{0} \to \sqrt{\frac{1}{2}}(\ket{0} + \ket{1})$ & & \\
+    (i.e, $\sqrt{\frac{1}{2}}$ amplitude on $\ket{0}$ & & \\
+    and $\sqrt{\frac{1}{2}}$ amplitude on $\ket{1})$ & & \\
+    $\ket{1} \to \sqrt{\frac{1}{2}}(\ket{0} - \ket{1})$ & & \\
+    (i.e, $\sqrt{\frac{1}{2}}$ amplitude on $\ket{0}$ & & \\
+    and $-\sqrt{\frac{1}{2}}$ amplitude on $\ket{1})$ & & \\
+\end{tabular}
+\end{table}
+
+\end{document}
