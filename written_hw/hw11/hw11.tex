@@ -8,8 +8,7 @@
 \usepackage{jeffe,handout,graphicx,varwidth}
 \usepackage{fourier-orns}
 \usepackage{mathtools}
-\usepackage[normalem]{ulem} % either use this (simple) or
-\usepackage{tikz}
+\usepackage{braket}
 
 
 \def\Sym#1{\texttt{\color{BrickRed}#1}}
@@ -102,15 +101,25 @@ Problems" listed at the end if I ask.
 \begin{enumerate}
 
 
-\item Are all classical \textbf{reversible} operations also valid quantum operations? If not,
-give a countereample. If yes, explain why. 
+\item Do you think that all classical \textbf{reversible} operations also valid quantum operations? If not,
+give a countereample. If yes, explain why. Any reasonable attempt will get credit, so try
+to think about it yourself rather than looking up an answer!
 
-\item Prove that the Hadamard operation on two qubits (as seen in class) is a unitary operation.
+\item Prove that the following quantum algorithm on two qubits is unitary by showing that
+it preserves the unitary property on $\ket{00}$, $\ket{01}$, $\ket{10}$, and $\ket{11}$.
 
-\item Explain why, given $n$ qubits, the operation that applies the Hadamard opertion to each qubit
+\begin{algo}
+	\textul{$\mathsc{DoubleHadamard}$:}\+\\
+	initialize two qubits $A$, $B$\\
+    put $A$ and $B$ into any basic state (all amplitude on one of the four states)\\
+    Hadamard $A$\\
+    Hadamard $B$
+\end{algo}
+
+\item Explain why, given $n$ qubits, the operation that applies Hadamard to each qubit
 puts equal amplitude on each of the $2^n$ basic states. You may provide either a formal proof or a less formal explanation.
 
-\item 
+\item Optional: watch the 3Blue1Brown video on quantum computing and Grover's algorithm: \url{https://www.youtube.com/watch?v=RQWpF2Gb-gU}.
 
 \end{enumerate}
 
